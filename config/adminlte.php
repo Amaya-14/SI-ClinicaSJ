@@ -253,6 +253,22 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Control de citas',
+            'icon'    => 'fas fa-fw fa-calendar-alt',
+            'submenu' => [
+                [
+                    'text' => 'Citas',
+                    'icon' => 'fas fa-fw fa-calendar-plus',
+                    'url'  => 'citas',
+                ],
+                [
+                    'text' => 'Historial',
+                    'icon' => 'fas fa-fw fa-list-alt',
+                    'url'  => 'historial',
+                ],
+            ],
+        ],
         /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',

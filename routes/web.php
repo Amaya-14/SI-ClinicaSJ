@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 // Controladores Módulos
 use App\Http\Controllers\Persona\PacienteController;
 use App\Http\Controllers\Persona\EmpleadoController;
+use App\Http\Controllers\Agenda\CitaController;
+use App\Http\Controllers\Agenda\HistorialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/* */
 Route::resource('pacientes', PacienteController::class);
-
 Route::resource('empleados', EmpleadoController::class);
+
+/* */
+Route::resource('citas', CitaController::class);
+Route::resource('historial', HistorialController::class);
+
