@@ -238,6 +238,22 @@ return [
 
         // Sidebar items:
         [
+            'text'    => 'Personas',
+            'icon'    => 'fas fa-fw fa-male',
+            'submenu' => [
+                [
+                    'text' => 'Pacientes',
+                    'icon' => 'fas fa-fw fa-user-friends',
+                    'url'  => 'pacientes',
+                ],
+                [
+                    'text' => 'Empleados',
+                    'icon' => 'fas fa-fw fa-user-tie',
+                    'url'  => 'empleados',
+                ],
+            ],
+        ],
+        /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
@@ -317,7 +333,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*
@@ -358,20 +374,46 @@ return [
         'Datatables' => [
             'active' => true,
             'files' => [
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                // ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                // ],
+                // [
+                //     'type' => 'css',
+                //     'asset' => true,
+                //     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                // ],
+
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => 'https://code.jquery.com/jquery-3.5.1.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' => 'https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css',
                 ],
             ],
         ],
@@ -417,6 +459,22 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                ],
+                //
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css',
                 ],
             ],
         ],
@@ -552,5 +610,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

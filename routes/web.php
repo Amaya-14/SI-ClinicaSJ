@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controladores Módulos
+use App\Http\Controllers\Persona\PacienteController;
+use App\Http\Controllers\Persona\EmpleadoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('pacientes', PacienteController::class);
+
+Route::resource('empleados', EmpleadoController::class);
