@@ -237,6 +237,7 @@ return [
         ],
 
         // Sidebar items:
+        ['header' => 'Módulos'],
         [
             'text'    => 'Personas',
             'icon'    => 'fas fa-fw fa-male',
@@ -294,6 +295,13 @@ return [
                     'url'  => 'inventario/materiales',
                 ],
             ],
+        ],
+        ['header' => ''],
+        ['header' => 'Seguridad'],
+        [
+            'text' => 'Bitacora',
+            'icon'  => 'fas fa-fw fa-book',
+            'url'  => 'bitacora',
         ],
         /*[
             'type' => 'sidebar-menu-search',

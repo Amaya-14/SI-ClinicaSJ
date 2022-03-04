@@ -11,6 +11,7 @@ use App\Http\Controllers\Almacen\MedicamentoController;
 use App\Http\Controllers\Almacen\MaterialController;
 use App\Http\Controllers\Almacen\InventarioMedicamentoController;
 use App\Http\Controllers\Almacen\InventarioMaterialController;
+use App\Http\Controllers\Seguridad\BitacoraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,16 +32,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/* */
+/* Mòdulo Personas*/
 Route::resource('pacientes', PacienteController::class);
 Route::resource('empleados', EmpleadoController::class);
 
-/* */
+/* Mòdulo citas*/
 Route::resource('citas', CitaController::class);
 Route::resource('historial', HistorialController::class);
 
-/* */
+/* Mòdulo Almacen */
 Route::resource('medicamentos', MedicamentoController::class);
 Route::resource('materiales', MaterialController::class);
 Route::resource('inventario/medicamentos', InventarioMedicamentoController::class);
 Route::resource('inventario/materiales', InventarioMaterialController::class);
+
+/* Mòdulo Seguridad */
+
+// Pantalla Bitacora
+Route::resource('bitacora', BitacoraController::class);
