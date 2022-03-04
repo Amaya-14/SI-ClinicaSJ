@@ -269,6 +269,32 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Almacen',
+            'icon'    => 'fas fa-fw fa-warehouse',
+            'submenu' => [
+                [
+                    'text' => 'Medicamentos',
+                    'icon' => 'fas fa-fw fa-capsules',
+                    'url'  => 'medicamentos',
+                ],
+                [
+                    'text' => 'Inventario medicamentos',
+                    'icon' => 'fas fa-fw fa-box',
+                    'url'  => 'inventario/medicamentos',
+                ],
+                [
+                    'text' => 'Materiales',
+                    'icon' => 'fas fa-fw fa-syringe',
+                    'url'  => 'materiales',
+                ],
+                [
+                    'text' => 'Inventario materiales',
+                    'icon' => 'fas fa-fw fa-box-open',
+                    'url'  => 'inventario/materiales',
+                ],
+            ],
+        ],
         /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',
