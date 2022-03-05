@@ -1,6 +1,6 @@
 <div>
     @php
-        $heads = ['Pantalla', 'Visualizar', 'Consultar', 'Insertar', 'Actualizar', 'Eliminar', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+        $heads = ['Pantalla', 'Visualizar', 'Consultar', 'Insertar', 'Actualizar', 'Eliminar', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
         
         $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>

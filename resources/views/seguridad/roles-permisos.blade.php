@@ -19,11 +19,18 @@
                         data-bs-target="#pills-permisos" type="button" role="tab" aria-controls="pills-permisos"
                         aria-selected="false">Permisos</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-objetos-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-objetos" type="button" role="tab" aria-controls="pills-objetos"
+                        aria-selected="false">Objetos</button>
+                </li>
             </ul>
             <div class="card-tools mt-1">
                 <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
                 <x-adminlte-button class="btn-sm bg-teal" label="Nuevo rol" icon="fas fa-plus" data-toggle="modal"
                     data-target="#createRol" />
+                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo objeto" icon="fas fa-plus" data-toggle="modal"
+                data-target="#createObjeto" />
             </div><!-- /.card-tools -->
         </div><!-- /.card-header -->
         <div class="card-body">
@@ -34,6 +41,9 @@
                 <div class="tab-pane fade" id="pills-permisos" role="tabpanel" aria-labelledby="pills-permisos-tab">
                     @livewire('data-table.tabla-permisos')
                 </div>
+                <div class="tab-pane fade" id="pills-objetos" role="tabpanel" aria-labelledby="pills-objetos-tab">
+                    @livewire('data-table.tabla-objetos')
+                </div>
             </div>
         </div><!-- /.card-body -->
     </div><!-- /.card -->
@@ -43,6 +53,8 @@
     @livewire('modal.create.modal-rol')
     @livewire('modal.update.modal-rol')
     @livewire('modal.update.modal-permiso')
+    @livewire('modal.create.modal-objeto')
+    @livewire('modal.update.modal-objeto')
 @stop
 
 @section('js')

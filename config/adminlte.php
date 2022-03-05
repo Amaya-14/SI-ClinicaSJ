@@ -304,7 +304,7 @@ return [
             'url'  => 'bitacora',
         ],
         [
-            'text' => 'Roles y Permisos',
+            'text' => 'Roles, Permisos y Objetos',
             'icon'  => 'fas fa-fw fa-user-shield',
             'url'  => 'seguridad/roles-permisos',
         ],

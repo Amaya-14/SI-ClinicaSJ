@@ -2,7 +2,7 @@
     <form action="">
         {!! csrf_field() !!}
         @method('put')
-        <x-adminlte-modal id="updateRol" title="Actualizar Rol" size="lg" theme="purple" icon="fas fa-eye" v-centered static-backdrop scrollable>
+        <x-adminlte-modal id="updateRol" title="Actualizar Rol" theme="purple" icon="fas fa-eye" v-centered static-backdrop scrollable>
             <section>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="u-nombre-rol">Nombre<span class="text-danger">*</span></label>
