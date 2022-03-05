@@ -303,6 +303,11 @@ return [
             'icon'  => 'fas fa-fw fa-book',
             'url'  => 'bitacora',
         ],
+        [
+            'text' => 'Roles y Permisos',
+            'icon'  => 'fas fa-fw fa-user-shield',
+            'url'  => 'seguridad/roles-permisos',
+        ],
         /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',

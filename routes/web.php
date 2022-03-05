@@ -12,6 +12,7 @@ use App\Http\Controllers\Almacen\MaterialController;
 use App\Http\Controllers\Almacen\InventarioMedicamentoController;
 use App\Http\Controllers\Almacen\InventarioMaterialController;
 use App\Http\Controllers\Seguridad\BitacoraController;
+use App\Http\Controllers\Seguridad\RolPermisoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,4 @@ Route::resource('inventario/materiales', InventarioMaterialController::class);
 
 // Pantalla Bitacora
 Route::resource('bitacora', BitacoraController::class);
+Route::resource('seguridad/roles-permisos', RolPermisoController::class);
