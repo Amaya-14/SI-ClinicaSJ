@@ -271,7 +271,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Almacen',
+            'text'    => 'Almacén',
             'icon'    => 'fas fa-fw fa-warehouse',
             'submenu' => [
                 [
@@ -320,12 +320,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Roles, Permisos y Objetos',
-                    'icon'  => 'fas fa-fw fa-user-shield',
+                    'icon' => 'fas fa-fw fa-user-shield',
                     'url'  => 'seguridad/roles-permisos',
                 ],
                 [
+                    'text'    => 'Módulos',
+                    'icon'    => 'fas fa-fw fa-layer-group',
+                    'submenu' => [
+                        [
+                            'text' => 'Almacén',
+                            'icon' => 'fas fa-fw fa-warehouse',
+                            'url'  => 'mantenimiento/almacen',
+                        ],
+                    ],
+                ],
+                [
                     'text' => 'Bitacora',
-                    'icon'  => 'fas fa-fw fa-book',
+                    'icon' => 'fas fa-fw fa-book',
                     'url'  => 'bitacora',
                 ],
             ],

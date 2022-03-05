@@ -15,6 +15,7 @@ use App\Http\Controllers\Seguridad\BitacoraController;
 use App\Http\Controllers\Seguridad\RolPermisoController;
 use App\Http\Controllers\Seguridad\Configuracion\SistemaController;
 use App\Http\Controllers\Seguridad\Configuracion\BaseDatosController;
+use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::resource('seguridad/roles-permisos', RolPermisoController::class);
 // Pantallas configuración
 Route::resource('configuracion/sistema', SistemaController::class);
 Route::resource('configuracion/db', BaseDatosController::class);
+
+// Mantenimiento módulos
+Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
