@@ -307,6 +307,11 @@ return [
                     'icon' => 'fas fa-fw fa-desktop',
                     'url'  => 'configuracion/sistema',
                 ],
+                [
+                    'text' => 'Base de Datos',
+                    'icon' => 'fas fa-fw fa-database',
+                    'url'  => 'configuracion/db',
+                ],
             ],
         ],
         [
