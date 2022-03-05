@@ -328,6 +328,11 @@ return [
                     'icon'    => 'fas fa-fw fa-layer-group',
                     'submenu' => [
                         [
+                            'text' => 'Personas',
+                            'icon' => 'fas fa-fw fa-male',
+                            'url'  => 'mantenimiento/personas',
+                        ],
+                        [
                             'text' => 'Almacén',
                             'icon' => 'fas fa-fw fa-warehouse',
                             'url'  => 'mantenimiento/almacen',

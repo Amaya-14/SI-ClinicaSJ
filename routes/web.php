@@ -17,6 +17,7 @@ use App\Http\Controllers\Seguridad\Configuracion\SistemaController;
 use App\Http\Controllers\Seguridad\Configuracion\BaseDatosController;
 use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 use App\Http\Controllers\Seguridad\MantenimientoCitaController;
+use App\Http\Controllers\Seguridad\MantenimientoPersonaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,4 @@ Route::resource('configuracion/db', BaseDatosController::class);
 // Mantenimiento módulos
 Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
 Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
+Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
