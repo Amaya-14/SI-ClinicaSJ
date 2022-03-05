@@ -332,6 +332,11 @@ return [
                             'icon' => 'fas fa-fw fa-warehouse',
                             'url'  => 'mantenimiento/almacen',
                         ],
+                        [
+                            'text' => 'Citas',
+                            'icon' => 'fas fa-fw fa-calendar-alt',
+                            'url'  => 'mantenimiento/cita',
+                        ],
                     ],
                 ],
                 [
