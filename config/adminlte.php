@@ -299,14 +299,31 @@ return [
         ['header' => ''],
         ['header' => 'Seguridad'],
         [
-            'text' => 'Bitacora',
-            'icon'  => 'fas fa-fw fa-book',
-            'url'  => 'bitacora',
+            'text'    => 'Configuracion',
+            'icon'    => 'fas fa-fw fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'Sistema',
+                    'icon' => 'fas fa-fw fa-desktop',
+                    'url'  => 'configuracion/sistema',
+                ],
+            ],
         ],
         [
-            'text' => 'Roles, Permisos y Objetos',
-            'icon'  => 'fas fa-fw fa-user-shield',
-            'url'  => 'seguridad/roles-permisos',
+            'text'    => 'Administración',
+            'icon'    => 'fas fa-fw fa-tools',
+            'submenu' => [
+                [
+                    'text' => 'Roles, Permisos y Objetos',
+                    'icon'  => 'fas fa-fw fa-user-shield',
+                    'url'  => 'seguridad/roles-permisos',
+                ],
+                [
+                    'text' => 'Bitacora',
+                    'icon'  => 'fas fa-fw fa-book',
+                    'url'  => 'bitacora',
+                ],
+            ],
         ],
         /*[
             'type' => 'sidebar-menu-search',
