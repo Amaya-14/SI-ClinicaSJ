@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Controladores Módulos
 use App\Http\Controllers\Persona\PacienteController;
 use App\Http\Controllers\Persona\EmpleadoController;
+use App\Http\Controllers\ControlEmpleado\JornadaLaboralController;
 use App\Http\Controllers\Agenda\CitaController;
 use App\Http\Controllers\Agenda\HistorialController;
 use App\Http\Controllers\Almacen\MedicamentoController;
@@ -41,6 +42,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* Mòdulo Personas*/
 Route::resource('pacientes', PacienteController::class);
 Route::resource('empleados', EmpleadoController::class);
+
+/* Módulo Control Personal */
+Route::resource('jornada-laboral', JornadaLaboralController::class);
 
 /* Mòdulo citas*/
 Route::resource('citas', CitaController::class);

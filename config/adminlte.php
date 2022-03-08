@@ -255,6 +255,11 @@ return [
             ],
         ],
         [
+            'text' => 'Control de Empleados',
+            'icon' => 'fas fa-fw fa-user-md',
+            'url'  => 'jornada-laboral',
+        ],
+        [
             'text'    => 'Control de citas',
             'icon'    => 'fas fa-fw fa-calendar-alt',
             'submenu' => [
