@@ -68,3 +68,8 @@ Route::resource('configuracion/db', BaseDatosController::class);
 Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
 Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
 Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
+
+// Generar reportes
+Route::get('reportes', function () {
+    return view('reportes.generar-reporte');
+});

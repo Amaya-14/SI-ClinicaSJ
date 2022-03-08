@@ -296,6 +296,11 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Generar reporte',
+            'icon' => 'fas fa-fw fa-file-alt',
+            'url'  => 'reportes',
+        ],
         ['header' => ''],
         ['header' => 'Seguridad'],
         [
