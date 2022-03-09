@@ -1,6 +1,6 @@
 <div>
-    <x-adminlte-modal id="updatePaciente" title="Actualizar Paciente" size="lg" theme="purple" icon="fas fa-user-circle"
-        v-centered static-backdrop scrollable>
+    <x-adminlte-modal id="updatePaciente" title="Paciente" size="lg" theme="purple" icon="fas fa-user-circle" v-centered
+        static-backdrop scrollable>
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#nav-info"
@@ -24,63 +24,79 @@
                     @method('put')
                     <section class="grid--responsive">
                         <div class="input-group grid__item1">
-                            <label class="input-group-text" for="identidad">Identidad</label>
-                            <input type="number" class="form-control" name="identidad" id="identidad"
-                                aria-label="Identidad" aria-describedby="input-identidad" placeholder="Ingrese su DNI"
-                                required>
-                        </div><!-- identidad -->
-    
+                            <label class="input-group-text" for="u-identidad-paciente">Identidad<span
+                                    class="text-danger">*</span><span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="u-identidad-paciente"
+                                id="u-identidad-paciente" aria-label="Indentidad del paciente"
+                                aria-describedby="input-u-identidad-paciente" placeholder="Ingrese el DNI" required>
+                        </div>
+                        <!-- identidad -->
                         <div class="input-group grid__item2">
-                            <label class="input-group-text" for="nacionalidad">Nacionalidad</label>
-                            <input type="text" class="form-control" name="nacionalidad" id="nacionalidad"
-                                aria-label="Nacionalidad" aria-describedby="input-nacionalidad"
-                                placeholder="Ingrese su nacionalidad" required>
-                        </div><!-- nacionalidad -->
-    
+                            <label class="input-group-text" for="u-nacionalidad-paciente">Nacionalidad<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="u-nacionalidad-paciente"
+                                id="u-nacionalidad-paciente" aria-label="Nacionalidad del paciente"
+                                aria-describedby="input-u-nacionalidad-paciente" placeholder="Ingrese la nacionalidad"
+                                required>
+                        </div>
+                        <!-- nacionalidad -->
                         <div class="input-group grid__item3">
-                            <label class="input-group-text" for="nombre-completo">Nombre / Apellido</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" aria-label="Nombre"
-                                aria-describedby="input-nombre" placeholder="Ingrese su nombre" required>
-                            <input type="text" class="form-control" name="apellido" id="apellido" aria-label="Apellido"
-                                aria-describedby="input-apellido" placeholder="Ingrese su apellidos" required>
-                        </div><!-- nombre y apellido -->
-    
+                            <label class="input-group-text">Nombre completo<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="u-nombre-paciente" id="u-nombre-paciente"
+                                aria-label="Nombre" aria-describedby="input-u-nombre-paciente"
+                                placeholder="Ingrese el nombre" required>
+                            <!-- input nombres -->
+                            <input type="text" class="form-control" name="u-apellido-paciente"
+                                id="u-apellido-paciente" aria-label="Apellido"
+                                aria-describedby="input-u-apellido-paciente" placeholder="Ingrese los apellidos"
+                                required>
+                            <!-- input apellidos -->
+                        </div>
+                        <!-- nombre y apellido -->
                         <div class="input-group grid__item4">
-                            <label class="input-group-text" for="sexo">Sexo</label>
-                            <select class="form-select" name="sexo" id="sexo" aria-label="Sexo"
-                                aria-describedby="input-sexo" required>
+                            <label class="input-group-text" for="u-sexo-paciente">Sexo<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" name="u-sexo-paciente" id="u-sexo-paciente"
+                                aria-label="Sexo del paciente" aria-describedby="input-u-sexo-paciente" required>
                                 <option selected disabled value="">Seleccione...</option>
                                 <option value="H">Hombre</option>
                                 <option value="M">Mujer</option>
                             </select>
-                        </div><!-- sexo -->
-    
+                        </div>
+                        <!-- sexo -->
                         <div class="input-group grid__item5">
-                            <label class="input-group-text" for="fecha-nacimiento">Fecha nacimiento</label>
-                            <input type="date" class="form-control" name="nacionalidad" id="nacionalidad"
-                                aria-label="Fehca Nacimiento" aria-describedby="input-fecha-nacimiento" required>
-                        </div><!-- fecha de nacimiento -->
-    
+                            <label class="input-group-text" for="u-fecha-nacimiento-paciente">Fecha nacimiento<span
+                                    class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="u-fecha-nacimiento-paciente"
+                                id="u-fecha-nacimiento-paciente" aria-label="Fecha de nacimiento del paciente"
+                                aria-describedby="input-u-fecha-nacimiento" required>
+                        </div>
+                        <!-- fecha de nacimiento -->
                         <div class="input-group grid__item6">
-                            <label class="input-group-text" for="edad">Edad</label>
-                            <input type="number" class="form-control" name="edad" id="edad" aria-label="Edad"
-                                aria-describedby="input-edad" required>
-                        </div><!-- edad -->
-    
+                            <label class="input-group-text" for="u-edad-paciente">Edad<span
+                                    class="text-danger">*</span></label>
+                            <input type="number" class="form-control" name="u-edad-paciente" id="u-edad-paciente"
+                                aria-label="Edad del paciente" aria-describedby="input-u-edad-paciente" required>
+                        </div>
+                        <!-- edad -->
                         <div class="input-group grid__item7">
-                            <label class="input-group-text" for="estado-civil">Estado civil</label>
-                            <select class="form-select" name="estado-civil" id="estado-civil" aria-label="Estado civil"
-                                aria-describedby="input-estado-civil" required>
+                            <label class="input-group-text" for="u-estado-civil-paciente">Estado civil<span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" name="u-estado-civil-paciente" id="u-estado-civil-paciente"
+                                aria-label="Estado civil del paciente" aria-describedby="input-u-estado-civil-paciente"
+                                required>
                                 <option selected disabled value="">Seleccione...</option>
                                 <option value="S">Soltero/a</option>
                                 <option value="C">Casado/a</option>
                                 <option value="D">Divorciado/a</option>
                                 <option value="V">Viudo/a</option>
                             </select>
-                        </div><!-- estado civil -->
-                        <div class="grid__item8 d-flex justify-content-end g-1">
+                        </div>
+                        <!-- estado civil -->
+                        <div class="grid__item8 d-flex justify-content-start">
                             <x-adminlte-button class="mr-1" type="button" theme="warning" label="Editar" />
-                            <x-adminlte-button type="submit" theme="success" label="Guardar" />
+                            <x-adminlte-button class="mr-1" type="submit" theme="success" label="Guardar" />
+                            <x-adminlte-button type="reset" theme="danger" label="Cancelar" />
                         </div>
                     </section><!-- -->
                 </form><!-- -->
@@ -88,9 +104,8 @@
 
             <div class="tab-pane fade" id="nav-telefono" role="tabpanel" aria-labelledby="nav-telefono-tab">
                 <div class="d-flex justify-content-end mb-2">
-                    <button class="btn btn-xs btn-success text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#createTelefono">
-                        <i class="fa fa-lg fa-fw fa-plus"></i>
-                    </button>
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo télefono" icon="fas fa-plus"
+                        data-toggle="modal" data-target="#createTelefono" />
                 </div>
                 <table class="table table-light">
                     <thead>
@@ -111,11 +126,12 @@
                             <td>Celular</td>
                             <td>Personal</td>
                             <td>
-                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
+                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                                     <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                                 </button>
-                                <button class="btn btn-xs btn-info text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#updateTelefono">
-                                    <i class="far fa-lg fa-fw fa-eye"></i>
+                                <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
+                                    title="Ver/Editar registro" data-toggle="modal" data-target="#updateTelefono">
+                                    <i class="fas fa-lg fa-fw fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
@@ -125,9 +141,8 @@
 
             <div class="tab-pane fade" id="nav-correo" role="tabpanel" aria-labelledby="nav-correo-tab">
                 <div class="d-flex justify-content-end mb-2">
-                    <button class="btn btn-xs btn-success text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#createCorreo">
-                        <i class="fa fa-lg fa-fw fa-plus"></i>
-                    </button>
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo correo" icon="fas fa-plus"
+                        data-toggle="modal" data-target="#createCorreo" />
                 </div>
                 <table class="table table-light">
                     <thead>
@@ -142,11 +157,12 @@
                             <th scope="row">1</th>
                             <td>daniel@example.com</td>
                             <td>
-                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
+                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                                     <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                                 </button>
-                                <button class="btn btn-xs btn-info text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#updateCorreo">
-                                    <i class="far fa-lg fa-fw fa-eye"></i>
+                                <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
+                                    title="Ver/Editar registro" data-toggle="modal" data-target="#updateCorreo">
+                                    <i class="fas fa-lg fa-fw fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
@@ -156,9 +172,8 @@
 
             <div class="tab-pane fade" id="nav-direccion" role="tabpanel" aria-labelledby="nav-direccion-tab">
                 <div class="d-flex justify-content-end mb-2">
-                    <button class="btn btn-xs btn-success text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#createDireccion">
-                        <i class="fa fa-lg fa-fw fa-plus"></i>
-                    </button>
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nueva dirección" icon="fas fa-plus"
+                        data-toggle="modal" data-target="#createDireccion" />
                 </div>
                 <table class="table table-light">
                     <thead>
@@ -175,11 +190,12 @@
                             <td>Col. xxx</td>
                             <td> ------ </td>
                             <td>
-                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
+                                <button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                                     <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                                 </button>
-                                <button class="btn btn-xs btn-info text-white mx-1 shadow" title="Details" data-toggle="modal" data-target="#updateDireccion">
-                                    <i class="far fa-lg fa-fw fa-eye"></i>
+                                <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
+                                    title="Ver/Editar registro" data-toggle="modal" data-target="#updateDireccion">
+                                    <i class="fas fa-lg fa-fw fa-eye"></i>
                                 </button>
                             </td>
                         </tr>

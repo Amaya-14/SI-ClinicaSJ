@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Medicamentos')
+@section('title', 'Pacientes')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -11,6 +11,14 @@
             grid-auto-flow: dense;
             grid-auto-rows: auto;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+        }
+
+        .grid__item3,
+        .grid__item8,
+        .grid__item9,
+        .grid__item10 {
+            grid-column-start: 1;
+            grid-column-end: -1;
         }
 
         .btn__info {
@@ -36,7 +44,7 @@
 @section('content_header')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title m-0">Lista de medicamentos</h3>
+            <h3 class="card-title m-0">Lista de pacientes</h3>
             <div class="card-tools m-0">
                 <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
                 <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
@@ -48,10 +56,10 @@
         <div class="card-body">
             <div class="d-flex justify-content-end align-items-center mb-3">
                 <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-toggle="modal"
-                    data-target="#createMedicamento" />
+                    data-target="#crearPaciente" />
             </div>
             <div>
-                @livewire('data-table.tabla-medicamentos')
+                @livewire('data-table.tabla-pacientes')
             </div>
         </div>
         <!-- card-body -->
@@ -76,9 +84,9 @@
         <!-- footer modal -->
     </x-adminlte-modal>
     <!-- modal instrucciones -->
-    
-    @livewire('modal.create.modal-medicamento')
-    @livewire('modal.update.modal-medicamento')
+
+    @livewire('modal.create.modal-pacientes')
+    @livewire('modal.update.modal-pacientes')
 @stop
 
 @section('js')

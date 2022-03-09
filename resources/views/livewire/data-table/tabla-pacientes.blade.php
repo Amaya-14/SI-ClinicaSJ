@@ -1,18 +1,18 @@
 <div>
     {{-- Setup data for datatables --}}
     @php
-        $heads = ['#', 'Nombre', 'Identidad', 'Sexo', 'Fecha Nacimiento', 'Edad', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+        $heads = ['#', 'Nombre', 'Identidad', 'Sexo', 'Fecha Nacimiento', 'Edad', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
         
         $btnEdit = '<button class="btn btn-xs btn-warning text-white mx-1 shadow" title="Edit" 
                     data-toggle="modal" data-target="#updatePaciente">
                         <i class="fa fa-lg fa-fw fa-pencil-alt"></i>
                     </button>';
-        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
+        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar paciente">
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
-        $btnDetails = '<button class="btn btn-xs btn-success text-white mx-1 shadow" title="Details" 
+        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar paciente" 
                         data-toggle="modal" data-target="#updatePaciente">
-                        <i class="far fa-lg fa-fw fa-address-card"></i>
+                        <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         
         $config = [

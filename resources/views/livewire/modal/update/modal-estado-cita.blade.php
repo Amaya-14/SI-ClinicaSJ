@@ -21,9 +21,9 @@
                 </div><!-- descripción de la presentación -->
             </section>
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-1" type="button" theme="warning" label="Editar" />
+                <x-adminlte-button type="button" theme="warning" label="Editar" />
                 <x-adminlte-button type="submit" theme="success" label="Guardar" />
-                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
+                <x-adminlte-button type="reset" theme="danger" label="Cancelar" data-dismiss="modal" />
             </x-slot>
         </x-adminlte-modal>
     </form>

@@ -6,76 +6,89 @@
             static-backdrop scrollable>
             <section class="grid--responsive">
                 <div class="input-group">
-                    <label class="input-group-text" for="doctor">Doctor</label>
-                    <select class="form-select" name="doctor" id="doctor" aria-label="doctor"
-                        aria-describedby="input-doctor" required>
+                    <label class="input-group-text" for="u-doctor-cita">Doctor<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" name="u-doctor-cita" id="u-doctor-cita" aria-label="Doctor de la cita"
+                        aria-describedby="input-u-doctor-cita" required>
                         <option selected disabled value="">Seleccione doctor...</option>
-                        <option value="H">doctor 1</option>
-                        <option value="M">doctor 2</option>
+                        <option value="1">doctor 1</option>
+                        <option value="2">doctor 2</option>
                     </select>
-                </div><!-- Doctor -->
-
+                </div>
+                <!-- Doctor -->
                 <div class="input-group">
-                    <label class="input-group-text" for="paciente">Paciente</label>
-                    <select class="form-select" name="paciente" id="paciente" aria-label="paciente"
-                        aria-describedby="input-paciente" required>
+                    <label class="input-group-text" for="u-paciente-cita">Paciente<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" name="u-paciente-cita" id="u-paciente-cita"
+                        aria-label="Paciente de la cita" aria-describedby="input-u-paciente-cita" required>
                         <option selected disabled value="">Seleccione paciente...</option>
-                        <option value="H">paciente 1</option>
-                        <option value="M">paciente 2</option>
+                        <option value="1">paciente 1</option>
+                        <option value="2">paciente 2</option>
                     </select>
-                </div><!-- Paciente -->
-
+                </div>
+                <!-- Paciente -->
                 <div class="input-group">
-                    <label class="input-group-text" for="estado">Estado</label>
-                    <select class="form-select" name="estado" id="estado" aria-label="estado"
-                        aria-describedby="input-estado" required>
+                    <label class="input-group-text" for="u-estado-cita">Estado<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" name="u-estado-cita" id="u-estado-cita"
+                        aria-label="Estado de la cita" aria-describedby="input-u-estado-cita" required>
                         <option selected disabled value="">Seleccione estado...</option>
                         <option value="H">estado 1</option>
                         <option value="M">estado 2</option>
                     </select>
-                </div><!-- Estado -->
-
+                </div>
+                <!-- Estado -->
                 <div class="input-group">
-                    <label class="input-group-text" for="tipo">Tipo</label>
-                    <select class="form-select" name="tipo" id="tipo" aria-label="tipo" aria-describedby="input-tipo"
-                        required>
+                    <label class="input-group-text" for="u-tipo-cita">Tipo<span class="text-danger">*</span></label>
+                    <select class="form-select" name="u-tipo-cita" id="u-tipo-cita" aria-label="Tipo de cita"
+                        aria-describedby="input-u-tipo-cita" required>
                         <option selected disabled value="">Seleccione tipo...</option>
                         <option value="H">tipo 1</option>
                         <option value="M">tipo 2</option>
                     </select>
-                </div><!-- Tipo -->
-
+                </div>
+                <!-- Tipo -->
                 <div class="input-group">
-                    <label class="input-group-text" for="fecha-inicio">Inicio</label>
-                    <input type="date" class="form-control" name="fecha-inicio" id="fecha-inicio"
-                        aria-label="Fecha Inicio" aria-describedby="input-fecha-inicio"
+                    <label class="input-group-text">Inicio<span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" name="u-fecha-inicio-cita" id="u-fecha-inicio-cita"
+                        aria-label="Fecha de Inicio la cita" aria-describedby="input-u-fecha-inicio-cita"
                         placeholder="Ingrese fecha de inicio" required>
-                    <input type="time" class="form-control" name="hora-inicio" id="hora-inicio"
-                        aria-label="Hora Inicio" aria-describedby="input-hora-inicio"
+                    <!--  -->
+                    <input type="time" class="form-control" name="u-hora-inicio-cita" id="u-hora-inicio-cita"
+                        aria-label="Hora de Inicio de la ciat" aria-describedby="input-u-hora-inicio-cita"
                         placeholder="Ingrese hora de inicio" required>
-                </div><!-- Inicio -->
-
+                    <!--  -->
+                </div>
+                <!-- Inicio -->
                 <div class="input-group">
-                    <label class="input-group-text" for="fecha-final">Final</label>
-                    <input type="date" class="form-control" name="fecha-final" id="fecha-final"
-                        aria-label="Fecha final" aria-describedby="input-fecha-final"
+                    <label class="input-group-text">Final<span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" name="u-fecha-final-cita" id="u-fecha-final-cita"
+                        aria-label="Fecha final de la cita" aria-describedby="input-u-fecha-final-cita"
                         placeholder="Ingrese fecha de final" required>
-                    <input type="time" class="form-control" name="hora-final" id="hora-final" aria-label="Hora final"
-                        aria-describedby="input-hora-final" placeholder="Ingrese hora de final" required>
-                </div><!-- Final -->
-
+                    <!--  -->
+                    <input type="time" class="form-control" name="u-hora-final-cita" id="u-hora-final-cita"
+                        aria-label="Hora final de la cita" aria-describedby="input-u-hora-final-cita"
+                        placeholder="Ingrese hora de final" required>
+                    <!--  -->
+                </div>
+                <!-- Final -->
                 <div class="input-group grid--row__extend">
-                    <label class="input-group-text" for="descripcion">Descripción</label>
-                    <textarea class="form-control" name="descripcion" id="descripcion" aria-label="descripcion"
-                        aria-describedby="input-descripcion" placeholder="Ingrese su descripción (Opcional)"
-                        required></textarea>
-                </div><!-- descripción -->
+                    <label class="input-group-text" for="u-descripcion-cita">Descripción</label>
+                    <textarea class="form-control" name="u-descripcion-cita" id="u-descripcion-cita"
+                        aria-label="Descripción de la cia" aria-describedby="input-u-descripcion-cita"
+                        placeholder="Ingrese la descripción (Opcional)" required></textarea>
+                </div>
+                <!-- descripción -->
             </section>
+            <!-- -->
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-1" type="button" theme="warning" label="Editar" />
+                <x-adminlte-button type="button" theme="warning" label="Editar" />
                 <x-adminlte-button type="submit" theme="success" label="Guardar" />
-                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
+                <x-adminlte-button type="reset" theme="danger" label="Cancelar" data-dismiss="modal" />
             </x-slot>
-        </x-adminlte-modal><!-- -->
-    </form><!-- -->
+            <!-- -->
+        </x-adminlte-modal>
+        <!-- -->
+    </form>
+    <!-- -->
 </div>

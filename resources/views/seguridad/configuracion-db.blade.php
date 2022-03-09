@@ -27,6 +27,14 @@
             margin: 0;
         }
 
+        .btn-check:focus+.btn,
+        .btn:focus,
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
+        }
+
     </style>
 @stop
 
@@ -161,8 +169,8 @@
 @stop
 
 @section('content')
-    <x-adminlte-modal id="instruccionesDB" title="Instrucciones de uso DB" theme="info" icon="fas fa-info" v-centered
-        scrollable>
+    <x-adminlte-modal id="instruccionesDB" title="Instrucciones de uso base de datos" theme="info" icon="fas fa-info"
+        v-centered scrollable>
         <section>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
             repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
@@ -189,8 +197,8 @@
     </x-adminlte-modal>
     <!-- modal instrucciones api -->
 
-    <x-adminlte-modal id="instruccionesTabla" title="Instrucciones de uso tabla" theme="info" icon="fas fa-info" v-centered
-        scrollable>
+    <x-adminlte-modal id="instruccionesTabla" title="Instrucciones de uso respaldo" theme="info" icon="fas fa-info"
+        v-centered scrollable>
         <section>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
             repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?

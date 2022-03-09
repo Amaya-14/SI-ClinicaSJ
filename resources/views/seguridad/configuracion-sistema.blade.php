@@ -15,10 +15,19 @@
 
         .btn__info {
             cursor: pointer;
+            color: cornflowerblue;
         }
 
         .card {
             margin: 0;
+        }
+
+        .btn-check:focus+.btn,
+        .btn:focus,
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
         }
 
     </style>
@@ -34,7 +43,7 @@
                     <h3 class="card-title m-0">Configuración del sistema</h3>
                     <div class="card-tools m-0">
                         <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                        <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalPurple"
+                        <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#instruccionesCS"
                             title="información"></i>
                     </div>
                     <!-- card-tools -->
@@ -102,7 +111,8 @@
                     <h3 class="card-title m-0">Información del propietario</h3>
                     <div class="card-tools m-0">
                         <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                        <i class="fas fa-info-circle fs-5 btn__info" title="información"></i>
+                        <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#instruccionesP"
+                            title="información"></i>
                     </div>
                     <!-- card-tools -->
                 </div>
@@ -157,7 +167,8 @@
                     <h3 class="card-title m-0">Información del la empresa</h3>
                     <div class="card-tools m-0">
                         <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                        <i class="fas fa-info-circle fs-5 btn__info" title="información"></i>
+                        <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#instruccionesE"
+                            title="información"></i>
                     </div>
                     <!-- card-tools -->
                 </div>
@@ -204,18 +215,50 @@
 @stop
 
 @section('content')
-    {{-- Themed --}}
-    <x-adminlte-modal id="modalPurple" title="Theme Purple" theme="info" icon="fas fa-bolt" size='sm' v-centered scrollable>
+    <x-adminlte-modal id="instruccionesCS" title="Instrucciones configuración del sistema" theme="info" icon="fas fa-info"
+        v-centered scrollable>
         <section>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, quasi reprehenderit! Illum debitis pariatur sequi
-            in consequuntur similique perspiciatis, magnam vitae dolorum exercitationem, amet libero voluptatibus facilis?
-            Omnis, veniam deserunt.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
+            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
         </section>
+        <!-- body modal -->
         <x-slot name="footerSlot">
             <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
+            <!-- bottones modal -->
         </x-slot>
+        <!-- footer modal -->
     </x-adminlte-modal>
-    {{-- Example button to open modal --}}
+    <!-- modal instrucciones -->
+
+    <x-adminlte-modal id="instruccionesP" title="Instrucciones configuración del propietario" theme="info"
+        icon="fas fa-info" v-centered scrollable>
+        <section>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
+            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
+        </section>
+        <!-- body modal -->
+        <x-slot name="footerSlot">
+            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
+            <!-- bottones modal -->
+        </x-slot>
+        <!-- footer modal -->
+    </x-adminlte-modal>
+    <!-- modal instrucciones -->
+
+    <x-adminlte-modal id="instruccionesE" title="Instrucciones configuración de la empresa" theme="info" icon="fas fa-info"
+        v-centered scrollable>
+        <section>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
+            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
+        </section>
+        <!-- body modal -->
+        <x-slot name="footerSlot">
+            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
+            <!-- bottones modal -->
+        </x-slot>
+        <!-- footer modal -->
+    </x-adminlte-modal>
+    <!-- modal instrucciones -->
 @stop
 
 @section('js')

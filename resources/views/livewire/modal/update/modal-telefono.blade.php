@@ -12,43 +12,52 @@
                         aria-describedby="input-u-persona" required>
                         <option value="1" selected>Persona</option>
                     </select>
-                </div><!-- persona -->
-
+                </div>
+                <!-- persona -->
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="area">Área<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="area" id="area" aria-label="Área"
-                        aria-describedby="input-area" value="504" required>
-                </div><!-- numero area -->
-
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="numero">Número<span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="numero" id="numero" aria-label="Número"
-                        aria-describedby="input-numero" placeholder="Ingrese su número" required>
-                </div><!-- télefono -->
-
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="tipo-telefono">Tipo teléfono<span
+                    <label class="input-group-text" for="u-area-telefono-persona">Área<span
                             class="text-danger">*</span></label>
-                    <select class="form-select" name="tipo-telefono" id="tipo-telefono" aria-label="Tipo teléfono"
-                        aria-describedby="input-tipo-telefono" required>
+                    <input type="number" class="form-control" name="u-area-telefono-persona"
+                        id="u-area-telefono-persona" aria-label="Área" aria-describedby="input-u-area-telefono-persona"
+                        value="504" required>
+                </div>
+                <!-- número de área -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="u-numero-telefono-persona">Número<span
+                            class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="u-numero-telefono-persona"
+                        id="u-numero-telefono-persona" aria-label="Número"
+                        aria-describedby="input-u-numero-telefono-persona" placeholder="Ingrese su número" required>
+                </div>
+                <!-- número de télefono -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="u-tipo-telefono">Tipo teléfono<span
+                            class="text-danger">*</span></label>
+                    <select class="form-select" name="u-tipo-telefono" id="u-tipo-telefono"
+                        aria-label="Tipo teléfono" aria-describedby="input-u-tipo-telefono" required>
                         <option selected disabled value="">Tipo teléfono...</option>
                         <option value="C">Celular</option>
                         <option value="F">Fijo</option>
                     </select>
-                </div><!-- tipo teléfono -->
-
+                </div>
+                <!-- tipo de teléfono -->
                 <div class="input-group">
-                    <label class="input-group-text" for="descripcion">Descripción</label>
-                    <textarea type="text" class="form-control" name="descripcion" id="descripcion"
-                        aria-label="Descripción" aria-describedby="input-descricpcion"
+                    <label class="input-group-text" for="u-descripcion-telefono">Descripción</label>
+                    <textarea type="text" class="form-control" name="u-descripcion-telefono"
+                        id="u-descripcion-telefono" aria-label="Descripción" aria-describedby="input-descricpcion"
                         placeholder="Ingrese la descripción (Opcional)"></textarea>
-                </div><!-- descripcion -->
+                </div>
+                <!-- descripcion del teléfono -->
             </section>
+            <!--  -->
             <x-slot name="footerSlot">
-                <x-adminlte-button class="mr-1" type="button" theme="warning" label="Editar" />
+                <x-adminlte-button type="button" theme="warning" label="Editar" />
                 <x-adminlte-button type="submit" theme="success" label="Guardar" />
-                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
+                <x-adminlte-button type="reset" theme="danger" label="Cancelar" data-dismiss="modal" />
             </x-slot>
+            <!--  -->
         </x-adminlte-modal>
+        <!--  -->
     </form>
+    <!--  -->
 </div>

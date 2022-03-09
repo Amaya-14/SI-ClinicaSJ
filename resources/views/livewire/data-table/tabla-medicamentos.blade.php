@@ -1,21 +1,21 @@
 <div>
     @php
-        $heads = ['#', 'Nombre', 'Presentación', 'Tipo', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+        $heads = ['#', 'Nombre', 'Presentación', 'Tipo', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
         
         $btnEdit = '<button class="btn btn-xs btn-warning text-white mx-1 shadow" title="Edit" 
                     data-toggle="modal" data-target="#updatePaciente">
                         <i class="fa fa-lg fa-fw fa-pencil-alt"></i>
                     </button>';
-        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar">
+        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
-        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Detalles/Editar" 
+        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro" 
                         data-toggle="modal" data-target="#updateMedicamento">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         
         $config = [
-            'data' => [[1, 'Daniel André Amaya López', '0000-0000-00000', 'Hombre', '<nobr>' . $btnDelete . $btnDetails . '</nobr>']],
+            'data' => [[1, 'Medicamento', 'Tableta', 'Tipo', '<nobr>' . $btnDelete . $btnDetails . '</nobr>']],
             'order' => [[1, 'asc']],
             'columns' => [null, null, null, ['orderable' => false]],
         ];

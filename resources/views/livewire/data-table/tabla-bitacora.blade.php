@@ -1,8 +1,8 @@
 <div>
     @php
-        $heads = ['#', 'Fecha', 'Usuario', 'Objeto', 'Acción', 'Descripción', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+        $heads = ['#', 'Fecha', 'Usuario', 'Objeto', 'Acción', 'Descripción', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
 
-        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Details" 
+        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver registro" 
                         data-toggle="modal" data-target="#viewBitacora">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';

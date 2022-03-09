@@ -6,12 +6,12 @@
                     data-toggle="modal" data-target="#updatePaciente">
                         <i class="fa fa-lg fa-fw fa-pencil-alt"></i>
                     </button>';
-        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Delete">
+        $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
-        $btnDetails = '<button class="btn btn-xs btn-success text-white mx-1 shadow" title="Details" 
+        $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro" 
                         data-toggle="modal" data-target="#updateCita">
-                        <i class="far fa-lg fa-fw fa-address-card"></i>
+                        <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         
         $config = [

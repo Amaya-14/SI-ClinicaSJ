@@ -1,5 +1,6 @@
 <div>
-    <form action="#" method="post">
+    <form action="" method="post">
+        {!! csrf_field() !!}
         <x-adminlte-modal id="createEmpleado" title="Nuevo Empleado" size="lg" theme="teal" icon="fas fa-user-circle"
             v-centered static-backdrop scrollable>
             <nav>
@@ -19,104 +20,137 @@
                         @method('put')
                         <section class="grid--responsive">
                             <div class="input-group grid__item1">
-                                <label class="input-group-text" for="identidad">Identidad</label>
-                                <input type="number" class="form-control" name="identidad" id="identidad"
-                                    aria-label="Identidad" aria-describedby="input-identidad" placeholder="Ingrese su DNI"
-                                    required>
-                            </div><!-- identidad -->
-    
+                                <label class="input-group-text" for="c-identidad-empleado">Identidad<span
+                                        class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="c-identidad-empleado"
+                                    id="c-identidad-empleado" aria-label="Indentidad del empleado"
+                                    aria-describedby="input-c-identidad-empleado" placeholder="Ingrese el DNI" required>
+                            </div>
+                            <!-- identidad del empleado -->
                             <div class="input-group grid__item2">
-                                <label class="input-group-text" for="nacionalidad">Nacionalidad</label>
-                                <input type="text" class="form-control" name="nacionalidad" id="nacionalidad"
-                                    aria-label="Nacionalidad" aria-describedby="input-nacionalidad"
-                                    placeholder="Ingrese su nacionalidad" required>
-                            </div><!-- nacionalidad -->
-    
+                                <label class="input-group-text" for="c-nacionalidad-empleado">Nacionalidad<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="c-nacionalidad-empleado"
+                                    id="c-nacionalidad-empleado" aria-label="Nacionalidad del empleado"
+                                    aria-describedby="input-c-nacionalidad-empleado"
+                                    placeholder="Ingrese la nacionalidad" required>
+                            </div>
+                            <!-- nacionalidad del empleado -->
                             <div class="input-group grid__item3">
-                                <label class="input-group-text" for="nombre-completo">Nombre / Apellido</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" aria-label="Nombre"
-                                    aria-describedby="input-nombre" placeholder="Ingrese su nombre" required>
-                                <input type="text" class="form-control" name="apellido" id="apellido"
-                                    aria-label="Apellido" aria-describedby="input-apellido"
-                                    placeholder="Ingrese su apellidos" required>
-                            </div><!-- nombre y apellido -->
-    
+                                <label class="input-group-text">Nombre completo<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="c-nombre-empleado"
+                                    id="c-nombre-empleado" aria-label="Nombre"
+                                    aria-describedby="input-c-nombre-empleado" placeholder="Ingrese el nombre" required>
+                                <!-- input nombres -->
+                                <input type="text" class="form-control" name="c-apellido-empleado"
+                                    id="c-apellido-empleado" aria-label="Apellido"
+                                    aria-describedby="input-c-apellido-empleado" placeholder="Ingrese los apellidos"
+                                    required>
+                                <!-- input apellidos -->
+                            </div>
+                            <!-- nombre y apellido del empleado -->
                             <div class="input-group grid__item4">
-                                <label class="input-group-text" for="sexo">Sexo</label>
-                                <select class="form-select" name="sexo" id="sexo" aria-label="Sexo"
-                                    aria-describedby="input-sexo" required>
+                                <label class="input-group-text" for="c-sexo-empleado">Sexo<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" name="c-sexo-empleado" id="c-sexo-empleado"
+                                    aria-label="Sexo del empleado" aria-describedby="input-c-sexo-empleado" required>
                                     <option selected disabled value="">Seleccione...</option>
                                     <option value="H">Hombre</option>
                                     <option value="M">Mujer</option>
                                 </select>
-                            </div><!-- sexo -->
-    
+                            </div>
+                            <!-- sexo del empleado -->
                             <div class="input-group grid__item5">
-                                <label class="input-group-text" for="fecha-nacimiento">Fecha nacimiento</label>
-                                <input type="date" class="form-control" name="nacionalidad" id="nacionalidad"
-                                    aria-label="Fehca Nacimiento" aria-describedby="input-fecha-nacimiento" required>
-                            </div><!-- fecha de nacimiento -->
-    
+                                <label class="input-group-text" for="c-fecha-nacimiento-empleado">Fecha nacimiento<span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control" name="c-fecha-nacimiento-empleado"
+                                    id="c-fecha-nacimiento-empleado" aria-label="Fecha de nacimiento del empleado"
+                                    aria-describedby="input-c-fecha-nacimiento" required>
+                            </div>
+                            <!-- fecha de nacimiento del empleado -->
                             <div class="input-group grid__item6">
-                                <label class="input-group-text" for="edad">Edad</label>
-                                <input type="number" class="form-control" name="edad" id="edad" aria-label="Edad"
-                                    aria-describedby="input-edad" required>
-                            </div><!-- edad -->
-    
+                                <label class="input-group-text" for="c-edad-empleado">Edad<span
+                                        class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="c-edad-empleado" id="c-edad-empleado"
+                                    aria-label="Edad del empleado" aria-describedby="input-c-edad-empleado" required>
+                            </div>
+                            <!-- edad del empleado -->
                             <div class="input-group grid__item7">
-                                <label class="input-group-text" for="estado-civil">Estado civil</label>
-                                <select class="form-select" name="estado-civil" id="estado-civil"
-                                    aria-label="Estado civil" aria-describedby="input-estado-civil" required>
+                                <label class="input-group-text" for="c-estado-civil-empleado">Estado civil<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" name="c-estado-civil-empleado"
+                                    id="c-estado-civil-empleado" aria-label="Estado civil del empleado"
+                                    aria-describedby="input-c-estado-civil-empleado" required>
                                     <option selected disabled value="">Seleccione...</option>
                                     <option value="S">Soltero/a</option>
                                     <option value="C">Casado/a</option>
                                     <option value="D">Divorciado/a</option>
                                     <option value="V">Viudo/a</option>
                                 </select>
-                            </div><!-- estado civil -->
-    
+                            </div>
+                            <!-- estado civil del empleado  -->
                             <div class="input-group grid__item8">
-                                <label class="input-group-text" for="telefono">Teléfono</label>
-                                <input type="number" class="form-control" name="area" id="area" aria-label="Area"
-                                    aria-describedby="input-area" value="504" placeholder="Ingrese su area" required>
-                                <input type="number" class="form-control" name="numero" id="numero" aria-label="Número"
-                                    aria-describedby="input-numero" placeholder="Ingrese su número" required>
-                                <select class="form-select" name="tipo-telefono" id="tipo-telefono"
-                                    aria-label="Tipo teléfono" aria-describedby="input-tipo-telefono" required>
+                                <label class="input-group-text">Teléfono<span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="c-area-telefono" id="c-area-telefono"
+                                    aria-label="Area del telefono" aria-describedby="input-c-area-telefono" value="504"
+                                    required>
+                                <!-- número de area -->
+                                <input type="number" class="form-control" name="c-numero-telefono"
+                                    id="c-numero-telefono" aria-label="Número del teléfono"
+                                    aria-describedby="input-c-numero-telefono" placeholder="0000 0000" required>
+                                <!-- número de teléfono -->
+                                <select class="form-select" name="c-tipo-telefono" id="c-tipo-telefono"
+                                    aria-label="Tipo de teléfono" aria-describedby="input-c-tipo-telefono" required>
                                     <option selected disabled value="">Tipo teléfono...</option>
-                                    <option value="C">Celular</option>
                                     <option value="F">Fijo</option>
+                                    <option value="M">Móvil</option>
                                 </select>
-                                <input type="text" class="form-control" name="descripcion" id="descripcion"
-                                    aria-label="Descripción" aria-describedby="input-descricpcion"
+                                <!-- tipo de teléfono -->
+                                <input type="text" class="form-control" name="c-descripcion-telefono"
+                                    id="c-descripcion-telefono" aria-label="Descripción del teléfono"
+                                    aria-describedby="input-c-descricpcion-telefono"
                                     placeholder="Descripción(Opcional)">
-                            </div><!-- numero area, télefono, tipo teléfono, descripcion -->
-    
+                                <!-- descripción teléfono -->
+                            </div>
+                            <!-- numero area, télefono, tipo teléfono, descripcion del empleado -->
                             <div class="input-group grid__item9">
-                                <label class="input-group-text" for="direccion">Dirección</label>
-                                <input type="text" class="form-control" name="direccion" id="direccion"
-                                    aria-label="Dirección" aria-describedby="input-direccion"
-                                    placeholder="Ingrese su dirección" required>
-                                <input type="text" class="form-control" name="referencia" id="referencia"
-                                    aria-label="Referencia" aria-describedby="input-referencia"
+                                <label class="input-group-text">Dirección<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="c-direccion" id="c-direccion"
+                                    aria-label="Dirección del empleado" aria-describedby="input-c-direccion"
+                                    placeholder="Ingrese la dirección" required>
+                                <!-- dirección del empleado -->
+                                <input type="text" class="form-control" name="c-referencia" id="c-referencia"
+                                    aria-label="Referencia de la dirección" aria-describedby="input-c-referencia"
                                     placeholder="Referencia(Opcional)">
-                            </div><!-- dirección, referencia -->
-    
+                                <!-- referencia del empleado -->
+                            </div>
+                            <!-- dirección, referencia del empleado -->
                             <div class="input-group grid__item10">
-                                <label class="input-group-text" for="correo">Correo</label>
-                                <input type="email" class="form-control" name="correo" id="correo" aria-label="Correo"
-                                    aria-describedby="input-correo" placeholder="Ingrese su Correo" required>
-                            </div><!-- correo -->
-    
+                                <label class="input-group-text" for="c-correo-empleado">Correo</label>
+                                <input type="email" class="form-control" name="c-correo-empleado"
+                                    id="c-correo-empleado" aria-label="Correo del empleado"
+                                    aria-describedby="input-c-correo-empleado" placeholder="example@example.com"
+                                    required>
+                            </div>
+                            <!-- correo del empleado -->
                         </section>
+                        <!-- -->
                     </form>
+                    <!-- -->
                 </div>
+                <!-- -->
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                <!-- -->
             </div>
+            <!-- -->
             <x-slot name="footerSlot">
                 <x-adminlte-button type="submit" theme="success" label="Guardar" />
                 <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
             </x-slot>
+            <!-- -->
         </x-adminlte-modal>
+        <!-- -->
     </form>
+    <!-- -->
 </div>
