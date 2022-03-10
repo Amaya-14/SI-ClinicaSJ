@@ -97,7 +97,7 @@
         <!-- footer modal -->
     </x-adminlte-modal>
     <!-- modal instrucciones -->
-    
+
     @livewire('modal.create.modal-rol')
     @livewire('modal.update.modal-rol')
     @livewire('modal.update.modal-permiso')
@@ -107,4 +107,102 @@
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        // Variables
+        let inputs = document.querySelectorAll(".input-request");
+        let btnEditar = document.querySelectorAll(".btn-editar");
+        let btnCancelar = document.querySelectorAll(".btn-cancelar");
+        let btnHidden = document.querySelectorAll(".btn-hidden");
+        let modal = document.querySelectorAll('.modal-update');
+
+        // Funcionalidad de los button editar
+        btnEditar.forEach(element => {
+            element.addEventListener('click', function() {
+                if (this.id == 'editar-1') {
+                    inputs[0].removeAttribute('disabled');
+                    btnEditar[0].classList.add('d-none');
+                    btnHidden[0].classList.remove('d-none');
+                    btnHidden[1].classList.remove('d-none');
+                }
+
+                if (this.id == 'editar-2') {
+                    inputs[1].removeAttribute('disabled');
+                    btnEditar[1].classList.add('d-none');
+                    btnHidden[2].classList.remove('d-none');
+                    btnHidden[3].classList.remove('d-none');
+                }
+
+                if (this.id == 'editar-3') {
+                    inputs[2].removeAttribute('disabled');
+                    btnEditar[2].classList.add('d-none');
+                    btnHidden[4].classList.remove('d-none');
+                    btnHidden[5].classList.remove('d-none');
+                }
+            });
+        });
+
+        // Funcionalidad de los button cancelar
+        btnCancelar.forEach(element => {
+            element.addEventListener('click', function() {
+                Swal.fire({
+                    icon: 'question',
+                    title: '¿En realidad deas cancelar esta acción?',
+                    text: '¡Tus cambios se perderán!',
+                    confirmButtonText: 'Si, cancelar',
+                    showDenyButton: true,
+                    denyButtonText: `No`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        if (this.id == 'cancelar-1') {
+                            inputs[0].setAttribute('disabled');
+                            btnEditar[0].classList.remove('d-none');
+                            btnHidden[0].classList.add('d-none');
+                            btnHidden[1].classList.add('d-none');
+                        }
+
+                        if (this.id == 'cancelar-2') {
+                            inputs[1].setAttribute('disabled');
+                            btnEditar[1].classList.remove('d-none');
+                            btnHidden[2].classList.add('d-none');
+                            btnHidden[3].classList.add('d-none');
+                        }
+
+                        if (this.id == 'cancelar-3') {
+                            inputs[2].setAttribute('disabled');
+                            btnEditar[2].classList.remove('d-none');
+                            btnHidden[4].classList.add('d-none');
+                            btnHidden[5].classList.add('d-none');
+                        }
+                    }
+                })
+            });
+        });
+
+        // Funcionalidad al cerrar un modal
+        modal.forEach(element => {
+            element.addEventListener('hidden.bs.modal', function(event) {
+                if (this.id == 'updateRol' && btnEditar[0].classList.contains('d-none')) {
+                    inputs[0].setAttribute('disabled');
+                    btnEditar[0].classList.remove('d-none');
+                    btnHidden[0].classList.add('d-none');
+                    btnHidden[1].classList.add('d-none');
+                }
+
+                if (this.id == 'updatePermiso' && btnEditar[1].classList.contains('d-none')) {
+                    inputs[1].setAttribute('disabled');
+                    btnEditar[1].classList.remove('d-none');
+                    btnHidden[2].classList.add('d-none');
+                    btnHidden[3].classList.add('d-none');
+                }
+
+                if (this.id == 'updateObjeto' && btnEditar[2].classList.contains('d-none')) {
+                    inputs[2].setAttribute('disabled');
+                    btnEditar[2].classList.remove('d-none');
+                    btnHidden[4].classList.add('d-none');
+                    btnHidden[5].classList.add('d-none');
+                }
+            })
+        });
+    </script>
 @stop

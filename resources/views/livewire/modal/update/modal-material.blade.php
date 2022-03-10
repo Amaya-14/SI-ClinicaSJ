@@ -2,41 +2,60 @@
     <form action="" method="post">
         {!! csrf_field() !!}
         @method('put')
-        <x-adminlte-modal id="updateMaterial" title="Material" theme="purple" icon="fas fa-eye" v-centered
-            static-backdrop scrollable>
-            <section>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="u-nombre-material">Nombre<span
-                            class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="u-nombre-material" id="u-nombre-material"
-                        aria-label="Nombre del material" aria-describedby="input-u-nombre-material"
-                        placeholder="Ingrese el nombre del material" required>
+        <div class="modal fade modal-update" id="updateMaterial" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header bg-purple">
+                        <h4 class="modal-title" id="staticBackdropLabel">
+                            <i class="fas fa-eye mr-2"></i>
+                            Material
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="input-request" disabled>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="u-nombre-material">Nombre<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="u-nombre-material"
+                                    id="u-nombre-material" aria-label="Nombre del material"
+                                    aria-describedby="input-u-nombre-material"
+                                    placeholder="Ingrese el nombre del material" required>
+                            </div>
+                            <!-- nombre del material -->
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="u-tipo-material">Tipo material<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-select" name="u-tipo-material" id="u-tipo-material"
+                                    aria-label="Tipo de material" aria-describedby="input-u-tipo-material" required>
+                                    <option selected disabled value="">Seleccione...</option>
+                                    <option value="1">Tipo 1</option>
+                                    <option value="2">Tipo 2</option>
+                                </select>
+                            </div>
+                            <!-- tipo de material -->
+                            <div class="input-group">
+                                <label class="input-group-text" for="u-descripcion-material">Descripción</label>
+                                <textarea class="form-control" name="u-descripcion-material"
+                                    id="u-descripcion-material" aria-label="Descripción del material"
+                                    aria-describedby="input-u-descricpcion-material"
+                                    placeholder="Descripción(Opcional)"></textarea>
+                            </div>
+                            <!-- descripcion del material -->
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <x-adminlte-button class="btn-editar" type="button" theme="warning" label="Editar"
+                            id="editar-1" />
+                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success"
+                            label="Guardar" />
+                        <x-adminlte-button class="ml-1 btn-cancelar btn-hidden d-none" type="reset" theme="danger"
+                            label="Cancelar" id="cancelar-1" />
+                    </div>
                 </div>
-                <!-- nombre del material -->
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="u-tipo-material">Tipo material<span
-                            class="text-danger">*</span></label>
-                    <select class="form-select" name="u-tipo-material" id="u-tipo-material"
-                        aria-label="Tipo de material" aria-describedby="input-u-tipo-material" required>
-                        <option selected disabled value="">Seleccione...</option>
-                        <option value="1">Tipo 1</option>
-                        <option value="2">Tipo 2</option>
-                    </select>
-                </div>
-                <!-- tipo de material -->
-                <div class="input-group">
-                    <label class="input-group-text" for="u-descripcion-material">Descripción</label>
-                    <textarea class="form-control" name="u-descripcion-material" id="u-descripcion-material"
-                        aria-label="Descripción del material" aria-describedby="input-u-descricpcion-material"
-                        placeholder="Descripción(Opcional)"></textarea>
-                </div>
-                <!-- descripcion del material -->
-            </section>
-            <x-slot name="footerSlot">
-                <x-adminlte-button type="button" theme="warning" label="Editar" />
-                <x-adminlte-button type="submit" theme="success" label="Guardar" />
-                <x-adminlte-button type="reset" theme="danger" label="Cancelar" data-dismiss="modal" />
-            </x-slot>
-        </x-adminlte-modal>
+            </div>
+        </div>
+        <!--  -->
     </form>
 </div>

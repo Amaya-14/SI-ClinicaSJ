@@ -1,9 +1,9 @@
 <div>
     @php
-        $heads = [['label' => 'Fecha', 'width' => 4], ['label' => 'Usuario', 'width' => 4], ['label' => 'Acción', 'no-export' => true, 'width' => 4]];
+        $heads = [['label' => 'Fecha', 'width' => 4], ['label' => 'Usuario', 'width' => 4], ['label' => 'Opciones', 'no-export' => true, 'width' => 4]];
         
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver registro"
-                        data-toggle="modal" data-target="#selectRespaldo">
+                        data-bs-toggle="modal" data-bs-target="#selectRespaldo">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                         </button>';
         

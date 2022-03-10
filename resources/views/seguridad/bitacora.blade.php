@@ -62,6 +62,8 @@
         <!-- footer modal -->
     </x-adminlte-modal>
     <!-- modal instrucciones -->
+
+    @livewire('modal.select.modal-bitacora')
 @stop
 
 @section('js')

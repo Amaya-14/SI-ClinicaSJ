@@ -1,6 +1,6 @@
 <div>
     @php
-        $heads = ['#', 'Material', 'Tipo', 'Cantidad', 'Lote', 'Vencimiento', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
+        $heads = ['#', 'Material', 'Tipo', 'Cantidad', 'Lote', 'Vencimiento', ['label' => 'Opciones', 'no-export' => true, 'width' => 5]];
         
         $btnEdit = '<button class="btn btn-xs btn-warning text-white mx-1 shadow" title="Edit" 
                     data-toggle="modal" data-target="#updatePaciente">
@@ -10,7 +10,7 @@
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro" 
-                        data-toggle="modal" data-target="#updateInventarioMaterial">
+                        data-bs-toggle="modal" data-bs-target="#updateInventarioMaterial">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         

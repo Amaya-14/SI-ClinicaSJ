@@ -10,7 +10,7 @@
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro" 
-                        data-toggle="modal" data-target="#updateCita">
+                        data-bs-toggle="modal" data-bs-target="#updateCita">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         
@@ -22,7 +22,7 @@
     @endphp
 
     {{-- Minimal example / fill data using the component slot --}}
-    <x-adminlte-datatable id="table3" :heads="$heads" beautify hoverable striped with-buttons>
+    <x-adminlte-datatable id="tablaCitas" :heads="$heads" beautify hoverable striped with-buttons>
         @foreach ($config['data'] as $row)
             <tr>
                 @foreach ($row as $cell)

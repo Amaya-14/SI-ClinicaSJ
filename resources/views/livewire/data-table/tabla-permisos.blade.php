@@ -1,12 +1,12 @@
 <div>
     @php
-        $heads = ['Pantalla', 'Visualizar', 'Consultar', 'Insertar', 'Actualizar', 'Eliminar', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
+        $heads = ['Pantalla', 'Visualizar', 'Consultar', 'Insertar', 'Actualizar', 'Eliminar', ['label' => 'Opciones', 'no-export' => true, 'width' => 5]];
         
         $btnDelete = '<button class="btn btn-xs btn-danger text-white mx-1 shadow" title="Eliminar registro">
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                     </button>';
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro" 
-                        data-toggle="modal" data-target="#updatePermiso">
+                        data-bs-toggle="modal" data-bs-target="#updatePermiso">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                       </button>';
         

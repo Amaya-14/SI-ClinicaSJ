@@ -1,6 +1,6 @@
 <div>
     @php
-        $heads = ['#', 'Nombre', 'Descripción', ['label' => 'Acciones', 'no-export' => true, 'width' => 5]];
+        $heads = ['#', 'Nombre', 'Descripción', ['label' => 'Opciones', 'no-export' => true, 'width' => 5]];
         
         $btnEdit = '<button class="btn btn-xs btn-warning text-white mx-1 shadow" title="Edit"
                     data-toggle="modal" data-target="#updatePaciente">
@@ -10,18 +10,18 @@
                         <i class="fa fa-lg fa-fw fa-trash-alt"></i>
                       </button>';
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver/Editar registro"
-                        data-toggle="modal" data-target="#updateTipoCita">
+                        data-bs-toggle="modal" data-bs-target="#updateEstadoCita">
                         <i class="fas fa-lg fa-fw fa-eye"></i>
                         </button>';
         
         $config = [
-            'data' => [[1, 'Normal', 'Descipción', '<nobr>' . $btnDelete . $btnDetails . '</nobr>']],
+            'data' => [[1, 'Estado', 'Descipción', '<nobr>' . $btnDelete . $btnDetails . '</nobr>']],
             'order' => [[1, 'asc']],
             'columns' => [null, null, null, ['orderable' => false]],
         ];
     @endphp
 
-    <x-adminlte-datatable id="tablaTipoCitas" :heads="$heads" beautify hoverable striped with-buttons>
+    <x-adminlte-datatable id="tablaEstadosCitas" :heads="$heads" beautify hoverable striped with-buttons>
         @foreach ($config['data'] as $row)
             <tr>
                 @foreach ($row as $cell)
