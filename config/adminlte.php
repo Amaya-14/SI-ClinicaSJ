@@ -329,6 +329,11 @@ return [
             'icon'    => 'fas fa-fw fa-tools',
             'submenu' => [
                 [
+                    'text' => 'Usuarios',
+                    'icon' => 'fas fa-fw fa-user-plus',
+                    'url'  => 'usuarios',
+                ],
+                [
                     'text' => 'Roles, Permisos y Objetos',
                     'icon' => 'fas fa-fw fa-user-shield',
                     'url'  => 'seguridad/roles-permisos',

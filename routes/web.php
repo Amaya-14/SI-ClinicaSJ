@@ -19,7 +19,7 @@ use App\Http\Controllers\Seguridad\Configuracion\BaseDatosController;
 use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 use App\Http\Controllers\Seguridad\MantenimientoCitaController;
 use App\Http\Controllers\Seguridad\MantenimientoPersonaController;
-
+use App\Http\Controllers\Seguridad\UsuariosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,41 +39,36 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/* Mòdulo Personas*/
+/* Módulo Personas*/
 Route::resource('pacientes', PacienteController::class);
 Route::resource('empleados', EmpleadoController::class);
 
 /* Módulo Control Personal */
 Route::resource('jornada-laboral', JornadaLaboralController::class);
 
-/* Mòdulo citas*/
+/* Módulo citas*/
 Route::resource('citas', CitaController::class);
 Route::resource('historial', HistorialController::class);
 
-/* Mòdulo Almacen */
+/* Módulo Almacen */
 Route::resource('medicamentos', MedicamentoController::class);
 Route::resource('materiales', MaterialController::class);
 Route::resource('inventario/medicamentos', InventarioMedicamentoController::class);
 Route::resource('inventario/materiales', InventarioMaterialController::class);
 
-/* Mòdulo Seguridad */
-
-// Pantalla bitacora
-Route::resource('bitacora', BitacoraController::class);
-
-// Pantalla usuarios, roles, permisos y objetos
-Route::resource('seguridad/roles-permisos', RolPermisoController::class);
-
-// Pantallas configuración
-Route::resource('configuracion/sistema', SistemaController::class);
-Route::resource('configuracion/db', BaseDatosController::class);
-
-// Mantenimiento módulos
-Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
-Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
-Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
-
-// Generar reportes
+/* Módulo Reportes */
 Route::get('reportes', function () {
     return view('reportes.generar-reporte');
 });
+
+/* Configuración */
+Route::resource('configuracion/sistema', SistemaController::class);
+Route::resource('configuracion/db', BaseDatosController::class);
+
+/* Administración */
+Route::resource('usuarios', UsuariosController::class);
+Route::resource('seguridad/roles-permisos', RolPermisoController::class);
+Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
+Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
+Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
+Route::resource('bitacora', BitacoraController::class);
