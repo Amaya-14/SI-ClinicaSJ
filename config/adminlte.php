@@ -302,6 +302,27 @@ return [
             ],
         ],
         [
+            'text' => 'Caja chica',
+            'icon' => 'fas fa-fw fa-coins',
+            'submenu' => [
+                [
+                    'text' => 'Aperturas y Cierres',
+                    'icon' => 'fas fa-fw fa-money-bill-alt',
+                    'url'  => 'caja-chica/apertura-cierre',
+                ],
+                [
+                    'text' => 'Movimientos',
+                    'icon' => 'fas fa-fw fa-hand-holding-usd',
+                    'url'  => 'caja-chica/movimientos',
+                ],
+                [
+                    'text' => 'Caja registradora',
+                    'icon' => 'fas fa-fw fa-cash-register',
+                    'url'  => 'caja-chica/caja-registradora',
+                ],
+            ],
+        ],
+        [
             'text' => 'Generar reporte',
             'icon' => 'fas fa-fw fa-file-alt',
             'url'  => 'reportes',

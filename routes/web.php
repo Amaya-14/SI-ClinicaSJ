@@ -12,6 +12,10 @@ use App\Http\Controllers\Almacen\MedicamentoController;
 use App\Http\Controllers\Almacen\MaterialController;
 use App\Http\Controllers\Almacen\InventarioMedicamentoController;
 use App\Http\Controllers\Almacen\InventarioMaterialController;
+use App\Http\Controllers\CajaChica\AperturaCierreController;
+use App\Http\Controllers\CajaChica\MovimientoController;
+use App\Http\Controllers\CajaChica\CajaRegistradoraController;
+
 use App\Http\Controllers\Seguridad\BitacoraController;
 use App\Http\Controllers\Seguridad\RolPermisoController;
 use App\Http\Controllers\Seguridad\Configuracion\SistemaController;
@@ -20,6 +24,8 @@ use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 use App\Http\Controllers\Seguridad\MantenimientoCitaController;
 use App\Http\Controllers\Seguridad\MantenimientoPersonaController;
 use App\Http\Controllers\Seguridad\UsuariosController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +61,11 @@ Route::resource('medicamentos', MedicamentoController::class);
 Route::resource('materiales', MaterialController::class);
 Route::resource('inventario/medicamentos', InventarioMedicamentoController::class);
 Route::resource('inventario/materiales', InventarioMaterialController::class);
+
+/* Módulo Caja Chica */
+Route::resource('caja-chica/apertura-cierre', AperturaCierreController::class);
+Route::resource('caja-chica/movimientos', MovimientoController::class);
+Route::resource('caja-chica/caja-registradora', CajaRegistradoraController::class);
 
 /* Módulo Reportes */
 Route::get('reportes', function () {
