@@ -83,3 +83,7 @@ Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
 Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
 Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
 Route::resource('bitacora', BitacoraController::class);
+
+Route::get('mantenimiento', function () {
+    return view('seguridad.mantenimiento.index');
+});

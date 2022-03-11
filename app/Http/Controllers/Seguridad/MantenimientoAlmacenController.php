@@ -14,7 +14,7 @@ class MantenimientoAlmacenController extends Controller
      */
     public function index()
     {
-        return view('seguridad.mantenimiento-almacen');
+        return view('seguridad.mantenimiento.almacen');
     }
 
     /**

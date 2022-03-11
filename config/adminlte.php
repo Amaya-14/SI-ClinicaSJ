@@ -255,12 +255,12 @@ return [
             ],
         ],
         [
-            'text' => 'Control de Empleados',
-            'icon' => 'fas fa-fw fa-user-md',
+            'text' => 'Jornada Laboral',
+            'icon' => 'fas fa-fw fa-user-clock',
             'url'  => 'jornada-laboral',
         ],
         [
-            'text'    => 'Control de citas',
+            'text'    => 'Control de Citas',
             'icon'    => 'fas fa-fw fa-calendar-alt',
             'submenu' => [
                 [
@@ -270,7 +270,7 @@ return [
                 ],
                 [
                     'text' => 'Historial',
-                    'icon' => 'fas fa-fw fa-list-alt',
+                    'icon' => 'fas fa-fw fa-list-ul',
                     'url'  => 'historial',
                 ],
             ],
@@ -285,7 +285,7 @@ return [
                     'url'  => 'medicamentos',
                 ],
                 [
-                    'text' => 'Inventario medicamentos',
+                    'text' => 'Inventario Médicamentos',
                     'icon' => 'fas fa-fw fa-box',
                     'url'  => 'inventario/medicamentos',
                 ],
@@ -295,7 +295,7 @@ return [
                     'url'  => 'materiales',
                 ],
                 [
-                    'text' => 'Inventario materiales',
+                    'text' => 'Inventario Materiales',
                     'icon' => 'fas fa-fw fa-box-open',
                     'url'  => 'inventario/materiales',
                 ],
@@ -316,21 +316,20 @@ return [
                     'url'  => 'caja-chica/movimientos',
                 ],
                 [
-                    'text' => 'Caja registradora',
+                    'text' => 'Caja Registradora',
                     'icon' => 'fas fa-fw fa-cash-register',
                     'url'  => 'caja-chica/caja-registradora',
                 ],
             ],
         ],
         [
-            'text' => 'Generar reporte',
+            'text' => 'Generar Reporte',
             'icon' => 'fas fa-fw fa-file-alt',
             'url'  => 'reportes',
         ],
-        ['header' => ''],
         ['header' => 'Seguridad'],
         [
-            'text'    => 'Configuracion',
+            'text'    => 'Configuración',
             'icon'    => 'fas fa-fw fa-cogs',
             'submenu' => [
                 [
@@ -360,25 +359,9 @@ return [
                     'url'  => 'seguridad/roles-permisos',
                 ],
                 [
-                    'text'    => 'Módulos',
+                    'text'    => 'Mantenimiento de Módulos',
                     'icon'    => 'fas fa-fw fa-layer-group',
-                    'submenu' => [
-                        [
-                            'text' => 'Personas',
-                            'icon' => 'fas fa-fw fa-male',
-                            'url'  => 'mantenimiento/personas',
-                        ],
-                        [
-                            'text' => 'Almacén',
-                            'icon' => 'fas fa-fw fa-warehouse',
-                            'url'  => 'mantenimiento/almacen',
-                        ],
-                        [
-                            'text' => 'Citas',
-                            'icon' => 'fas fa-fw fa-calendar-alt',
-                            'url'  => 'mantenimiento/cita',
-                        ],
-                    ],
+                    'url'  => 'mantenimiento'
                 ],
                 [
                     'text' => 'Bitacora',

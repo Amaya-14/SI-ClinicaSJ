@@ -14,7 +14,7 @@ class MantenimientoCitaController extends Controller
      */
     public function index()
     {
-        return view('seguridad.mantenimiento-cita');
+        return view('seguridad.mantenimiento.cita');
     }
 
     /**

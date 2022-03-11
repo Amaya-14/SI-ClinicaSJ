@@ -14,7 +14,7 @@ class MantenimientoPersonaController extends Controller
      */
     public function index()
     {
-        return view('seguridad.mantenimiento-personas');
+        return view('seguridad.mantenimiento.personas');
     }
 
     /**
