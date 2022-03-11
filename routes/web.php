@@ -20,10 +20,11 @@ use App\Http\Controllers\Seguridad\BitacoraController;
 use App\Http\Controllers\Seguridad\RolPermisoController;
 use App\Http\Controllers\Seguridad\Configuracion\SistemaController;
 use App\Http\Controllers\Seguridad\Configuracion\BaseDatosController;
-use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
-use App\Http\Controllers\Seguridad\MantenimientoCitaController;
 use App\Http\Controllers\Seguridad\MantenimientoPersonaController;
+use App\Http\Controllers\Seguridad\MantenimientoCitaController;
+use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 use App\Http\Controllers\Seguridad\UsuariosController;
+use App\Http\Controllers\Seguridad\MantenimientoCajaController;
 
 
 /*
@@ -77,13 +78,14 @@ Route::resource('configuracion/sistema', SistemaController::class);
 Route::resource('configuracion/db', BaseDatosController::class);
 
 /* Administración */
-Route::resource('usuarios', UsuariosController::class);
-Route::resource('seguridad/roles-permisos', RolPermisoController::class);
-Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
-Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
-Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
-Route::resource('bitacora', BitacoraController::class);
-
 Route::get('mantenimiento', function () {
     return view('seguridad.mantenimiento.index');
 });
+
+Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
+Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
+Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
+Route::resource('mantenimiento/caja', MantenimientoCajaController::class);
+Route::resource('usuarios', UsuariosController::class);
+Route::resource('seguridad/roles-permisos', RolPermisoController::class);
+Route::resource('bitacora', BitacoraController::class);

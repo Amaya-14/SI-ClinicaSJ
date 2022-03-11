@@ -59,7 +59,9 @@
         .custom-a:hover {
             color: white;
             text-decoration: underline;
+            font-weight: bold;
         }
+
     </style>
 @stop
 
@@ -140,7 +142,7 @@
                             <h2 class="text-left">
                                 <i class="fas fa-fw fa-coins f-right"></i>
                                 <span>
-                                    <a class="custom-a" href="{{ url('mantenimiento/cita') }}">Caja Chica</a>
+                                    <a class="custom-a" href="{{ url('mantenimiento/caja') }}">Caja Chica</a>
                                 </span>
                             </h2>
                         </div>
