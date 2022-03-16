@@ -1,9 +1,9 @@
 <div>
-    <form action="" method="post">
+    <form id="form-u-1" action="" method="post">
         {!! csrf_field() !!}
         @method('put')
-        <div class="modal fade modal-update" id="updateCita" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="updateCita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header bg-purple">
@@ -11,17 +11,18 @@
                             <i class="fas fa-eye mr-2"></i>
                             Cita
                         </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="cerrar-modal" title="Cerrar"
+                            aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
-                        <fieldset class="grid--responsive input-request" disabled>
+                        <fieldset class="grid--responsive" id="inputs-u-1" disabled>
                             <div class="input-group">
                                 <label class="input-group-text" for="u-doctor-cita">Doctor<span
                                         class="text-danger">*</span></label>
                                 <select class="form-select" name="u-doctor-cita" id="u-doctor-cita"
                                     aria-label="Doctor de la cita" aria-describedby="input-u-doctor-cita" required>
-                                    <option selected disabled value="">Seleccione doctor...</option>
-                                    <option value="1">doctor 1</option>
+                                    <option disabled value="">Seleccione doctor...</option>
+                                    <option value="1" selected>doctor 1</option>
                                     <option value="2">doctor 2</option>
                                 </select>
                             </div>
@@ -99,8 +100,8 @@
                     <div class="modal-footer">
                         <x-adminlte-button class="btn-editar" type="button" theme="warning" label="Editar"
                             id="editar-1" />
-                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success"
-                            label="Guardar" />
+                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success" label="Guardar"
+                            id="actualizar-1" />
                         <x-adminlte-button class="ml-1 btn-cancelar btn-hidden d-none" type="reset" theme="danger"
                             label="Cancelar" id="cancelar-1" />
                     </div>

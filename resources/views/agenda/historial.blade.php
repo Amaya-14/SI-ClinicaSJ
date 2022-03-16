@@ -44,7 +44,7 @@
             <h3 class="card-title">Historial de citas</h3>
             <div class="card-tools m-0">
                 <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
+                <i class="fas fa-info-circle fs-5 btn__info" data-bs-toggle="modal" data-bs-target="#modalInstrucciones"
                     title="información"></i>
             </div>
             <!-- card-tools -->
@@ -52,8 +52,8 @@
         <!-- card-header -->
         <div class="card-body">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-toggle="modal"
-                    data-target="#createCita" />
+                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-bs-toggle="modal"
+                    data-bs-target="#createCita" />
             </div>
             @livewire('data-table.tabla-historial-cita')
         </div>

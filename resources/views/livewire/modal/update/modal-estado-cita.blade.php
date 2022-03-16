@@ -1,5 +1,5 @@
 <div>
-    <form action="" method="post">
+    <form id="form-u-2" action="" method="post">
         {!! csrf_field() !!}
         @method('put')
         <div class="modal fade modal-update" id="updateEstadoCita" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -11,10 +11,11 @@
                             <i class="fas fa-eye mr-2"></i>
                             Estado de cita
                         </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="cerrar-modal" title="Cerrar"
+                            aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
-                        <fieldset class="input-request" disabled>
+                        <fieldset class="input-request" id="inputs-u-2" disabled>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="u-nombre-estado-cita">Nombre<span
                                         class="text-danger">*</span></label>
@@ -37,8 +38,8 @@
                     <div class="modal-footer">
                         <x-adminlte-button class="btn-editar" type="button" theme="warning" label="Editar"
                             id="editar-2" />
-                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success"
-                            label="Guardar" />
+                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success" label="Guardar"
+                            id="actualizar-2" />
                         <x-adminlte-button class="ml-1 btn-cancelar btn-hidden d-none" type="reset" theme="danger"
                             label="Cancelar" id="cancelar-2" />
                     </div>

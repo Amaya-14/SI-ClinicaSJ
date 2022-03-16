@@ -3,9 +3,9 @@
         $heads = ['#', 'Caja', 'Fecha', 'Acción', 'Cantidad', 'Descripción', ['label' => 'Opciones', 'no-export' => true, 'width' => 5]];
         
         $btnDetails = '<button class="btn btn-xs btn-secondary text-white mx-1 shadow" title="Ver registro"
-                                data-bs-toggle="modal" data-bs-target="#updateMovimiento">
-                                <i class="fas fa-lg fa-fw fa-eye"></i>
-                                </button>';
+                        data-bs-toggle="modal" data-bs-target="#updateMovimiento">
+                        <i class="fas fa-lg fa-fw fa-eye"></i>
+                        </button>';
         
         $config = [
             'data' => [[1, 'Caja 1', '10/03/2022', 'ENTRADA', '500', 'Descripción', '<nobr>' . $btnDetails . '</nobr>']],
@@ -19,7 +19,7 @@
             <h3 class="card-title m-0"></h3>
             <div class="card-tools m-0">
                 <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
+                <i class="fas fa-info-circle fs-5 btn__info" data-bs-toggle="modal" data-bs-target="#modalInstrucciones"
                     title="información"></i>
             </div>
             <!-- card-tools -->

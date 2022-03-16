@@ -1,6 +1,6 @@
 <div>
-    <div class="modal fade modal-update" id="updateEmpleado" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade modals" id="updateEmpleado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-purple">
@@ -11,6 +11,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- navegación -->
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-info-tab" data-bs-toggle="tab"
@@ -31,80 +32,83 @@
                         </div>
                     </nav>
                     <div class="tab-content mt-3" id="nav-tabContent">
+                        <!-- información del empleado -->
                         <div class="tab-pane fade show active" id="nav-info" role="tabpanel"
                             aria-labelledby="nav-info-tab">
-                            <form action="" method="post">
+                            <!-- formulario empleado -->
+                            <form class="formulario" action="" method="post">
                                 {!! csrf_field() !!}
                                 @method('put')
                                 <fieldset class="input-request grid--responsive mb-3" disabled>
+                                    <!-- identidad -->
                                     <div class="input-group grid__item1">
-                                        <label class="input-group-text" for="u-identidad-paciente">Identidad<span
+                                        <label class="input-group-text" for="u-identidad-empleado">Identidad<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" name="u-identidad-paciente"
-                                            id="u-identidad-paciente" aria-label="Indentidad del paciente"
-                                            aria-describedby="input-u-identidad-paciente" placeholder="Ingrese el DNI"
+                                        <input type="number" class="form-control" name="u-identidad-empleado"
+                                            id="u-identidad-empleado" aria-label="Indentidad del empleado"
+                                            aria-describedby="input-u-identidad-empleado" placeholder="Ingrese el DNI"
                                             required>
                                     </div>
-                                    <!-- identidad -->
+                                    <!-- nacionalidad -->
                                     <div class="input-group grid__item2">
-                                        <label class="input-group-text" for="u-nacionalidad-paciente">Nacionalidad<span
+                                        <label class="input-group-text" for="u-nacionalidad-empleado">Nacionalidad<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="u-nacionalidad-paciente"
-                                            id="u-nacionalidad-paciente" aria-label="Nacionalidad del paciente"
-                                            aria-describedby="input-u-nacionalidad-paciente"
+                                        <input type="text" class="form-control" name="u-nacionalidad-empleado"
+                                            id="u-nacionalidad-empleado" aria-label="Nacionalidad del empleado"
+                                            aria-describedby="input-u-nacionalidad-empleado"
                                             placeholder="Ingrese la nacionalidad" required>
                                     </div>
-                                    <!-- nacionalidad -->
+                                    <!-- nombre y apellido -->
                                     <div class="input-group grid__item3">
                                         <label class="input-group-text">Nombre completo<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="u-nombre-paciente"
-                                            id="u-nombre-paciente" aria-label="Nombre"
-                                            aria-describedby="input-u-nombre-paciente" placeholder="Ingrese el nombre"
-                                            required>
                                         <!-- input nombres -->
-                                        <input type="text" class="form-control" name="u-apellido-paciente"
-                                            id="u-apellido-paciente" aria-label="Apellido"
-                                            aria-describedby="input-u-apellido-paciente"
-                                            placeholder="Ingrese los apellidos" required>
+                                        <input type="text" class="form-control" name="u-nombre-empleado"
+                                            id="u-nombre-empleado" aria-label="Nombre"
+                                            aria-describedby="input-u-nombre-empleado" placeholder="Ingrese el nombre"
+                                            required>
                                         <!-- input apellidos -->
+                                        <input type="text" class="form-control" name="u-apellido-empleado"
+                                            id="u-apellido-empleado" aria-label="Apellido"
+                                            aria-describedby="input-u-apellido-empleado"
+                                            placeholder="Ingrese los apellidos" required>
                                     </div>
-                                    <!-- nombre y apellido -->
+                                    <!-- sexo -->
                                     <div class="input-group grid__item4">
-                                        <label class="input-group-text" for="u-sexo-paciente">Sexo<span
+                                        <label class="input-group-text" for="u-sexo-empleado">Sexo<span
                                                 class="text-danger">*</span></label>
-                                        <select class="form-select" name="u-sexo-paciente" id="u-sexo-paciente"
-                                            aria-label="Sexo del paciente" aria-describedby="input-u-sexo-paciente"
+                                        <select class="form-select" name="u-sexo-empleado" id="u-sexo-empleado"
+                                            aria-label="Sexo del empleado" aria-describedby="input-u-sexo-empleado"
                                             required>
                                             <option selected disabled value="">Seleccione...</option>
                                             <option value="H">Hombre</option>
                                             <option value="M">Mujer</option>
                                         </select>
                                     </div>
-                                    <!-- sexo -->
+                                    <!-- fecha de nacimiento -->
                                     <div class="input-group grid__item5">
-                                        <label class="input-group-text" for="u-fecha-nacimiento-paciente">Fecha
+                                        <label class="input-group-text" for="u-fecha-nacimiento-empleado">Fecha
                                             nacimiento<span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control" name="u-fecha-nacimiento-paciente"
-                                            id="u-fecha-nacimiento-paciente"
-                                            aria-label="Fecha de nacimiento del paciente"
+                                        <input type="date" class="form-control" name="u-fecha-nacimiento-empleado"
+                                            id="u-fecha-nacimiento-empleado"
+                                            aria-label="Fecha de nacimiento del empleado"
                                             aria-describedby="input-u-fecha-nacimiento" required>
                                     </div>
-                                    <!-- fecha de nacimiento -->
-                                    <div class="input-group grid__item6">
-                                        <label class="input-group-text" for="u-edad-paciente">Edad<span
-                                                class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" name="u-edad-paciente"
-                                            id="u-edad-paciente" aria-label="Edad del paciente"
-                                            aria-describedby="input-u-edad-paciente" required>
-                                    </div>
                                     <!-- edad -->
+                                    <div class="input-group grid__item6">
+                                        <label class="input-group-text" for="u-edad-empleado">Edad<span
+                                                class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" name="u-edad-empleado"
+                                            id="u-edad-empleado" aria-label="Edad del empleado"
+                                            aria-describedby="input-u-edad-empleado" required>
+                                    </div>
+                                    <!-- estado civil -->
                                     <div class="input-group grid__item7">
-                                        <label class="input-group-text" for="u-estado-civil-paciente">Estado
+                                        <label class="input-group-text" for="u-estado-civil-empleado">Estado
                                             civil<span class="text-danger">*</span></label>
-                                        <select class="form-select" name="u-estado-civil-paciente"
-                                            id="u-estado-civil-paciente" aria-label="Estado civil del paciente"
-                                            aria-describedby="input-u-estado-civil-paciente" required>
+                                        <select class="form-select" name="u-estado-civil-empleado"
+                                            id="u-estado-civil-empleado" aria-label="Estado civil del empleado"
+                                            aria-describedby="input-u-estado-civil-empleado" required>
                                             <option selected disabled value="">Seleccione...</option>
                                             <option value="S">Soltero/a</option>
                                             <option value="C">Casado/a</option>
@@ -112,27 +116,25 @@
                                             <option value="V">Viudo/a</option>
                                         </select>
                                     </div>
-                                    <!-- -->
                                 </fieldset>
-                                <!-- estado civil -->
+                                <!-- botones de edición, submit y cancelar -->
                                 <div class="d-flex justify-content-start">
                                     <x-adminlte-button class="btn-editar" type="button" theme="warning"
                                         label="Editar" id="editar-persona" />
                                     <x-adminlte-button class="mr-1 btn-hidden d-none" type="submit" theme="success"
                                         label="Guardar" />
-                                    <x-adminlte-button class="mr-1 btn-cancelar btn-hidden d-none" type="reset"
-                                        theme="danger" label="Cancelar" id="cancelar-persona" />
+                                    <x-adminlte-button class="mr-1 btn-cancelar btn-hidden d-none" theme="danger"
+                                        label="Cancelar" id="cancelar-persona" />
                                 </div>
-                                <!-- -->
                             </form>
-                            <!-- -->
                         </div>
-                        <!-- -->
+                        <!-- teléfonos del empleado -->
                         <div class="tab-pane fade" id="nav-telefono" role="tabpanel"
                             aria-labelledby="nav-telefono-tab">
+                            <!-- boton nuevo télefono -->
                             <div class="d-flex justify-content-end mb-2">
                                 <x-adminlte-button class="btn-sm bg-teal" label="Nuevo télefono" icon="fas fa-plus"
-                                    data-toggle="modal" data-target="#createTelefono" />
+                                    data-bs-toggle="modal" data-bs-target="#createTelefono" />
                             </div>
                             <table class="table table-light">
                                 <thead>
@@ -166,11 +168,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- -->
                         </div>
-                        <!-- -->
+                        <!-- correos del empleado -->
                         <div class="tab-pane fade" id="nav-correo" role="tabpanel" aria-labelledby="nav-correo-tab">
                             <div class="d-flex justify-content-end mb-2">
+                                <!-- boton nuevo correo -->
                                 <x-adminlte-button class="btn-sm bg-teal" label="Nuevo correo" icon="fas fa-plus"
                                     data-bs-toggle="modal" data-bs-target="#createCorreo" />
                             </div>
@@ -200,11 +202,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- -->
                         </div>
-                        <!-- -->
+                        <!-- dirección del empleado -->
                         <div class="tab-pane fade" id="nav-direccion" role="tabpanel"
                             aria-labelledby="nav-direccion-tab">
+                            <!-- boton nueva dirección -->
                             <div class="d-flex justify-content-end mb-2">
                                 <x-adminlte-button class="btn-sm bg-teal" label="Nueva dirección" icon="fas fa-plus"
                                     data-bs-toggle="modal" data-bs-target="#createDireccion" />
@@ -239,9 +241,9 @@
                             </table>
                             <!-- -->
                         </div>
-                        <!-- -->
                     </div>
                 </div>
+                <!-- boton del modal -->
                 <div class="modal-footer">
                     <x-adminlte-button theme="danger" label="Cerrar" data-bs-dismiss="modal" />
                 </div>

@@ -55,8 +55,8 @@
         <!-- card-header -->
         <div class="card-body">
             <div class="d-flex justify-content-end align-items-center mb-3">
-                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-toggle="modal"
-                    data-target="#createEmpleado" />
+                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-bs-toggle="modal"
+                    data-bs-target="#createEmpleado" />
             </div>
             <div>
                 @livewire('data-table.tabla-empleados')
@@ -97,8 +97,9 @@
         let btnEditar = document.querySelectorAll(".btn-editar");
         let btnCancelar = document.querySelectorAll(".btn-cancelar");
         let btnHidden = document.querySelectorAll(".btn-hidden");
-        let modal = document.querySelectorAll('.modal-update');
-        console.log(modal)
+        let modal = document.querySelectorAll('.modals');
+        let forms = document.querySelectorAll('.formulario');
+
         // Funcionalidad de los button editar
         btnEditar.forEach(element => {
             element.addEventListener('click', function() {
@@ -107,6 +108,7 @@
                     btnEditar[0].classList.add('d-none');
                     btnHidden[0].classList.remove('d-none');
                     btnHidden[1].classList.remove('d-none');
+                    return;
                 }
 
                 if (this.id == 'editar-telefono') {
@@ -114,6 +116,7 @@
                     btnEditar[1].classList.add('d-none');
                     btnHidden[2].classList.remove('d-none');
                     btnHidden[3].classList.remove('d-none');
+                    return;
                 }
 
                 if (this.id == 'editar-correo') {
@@ -121,6 +124,7 @@
                     btnEditar[2].classList.add('d-none');
                     btnHidden[4].classList.remove('d-none');
                     btnHidden[5].classList.remove('d-none');
+                    return;
                 }
 
                 if (this.id == 'editar-direccion') {
@@ -128,6 +132,7 @@
                     btnEditar[3].classList.add('d-none');
                     btnHidden[6].classList.remove('d-none');
                     btnHidden[7].classList.remove('d-none');
+                    return;
                 }
             });
         });
@@ -150,6 +155,8 @@
                             btnEditar[0].classList.remove('d-none');
                             btnHidden[0].classList.add('d-none');
                             btnHidden[1].classList.add('d-none');
+                            forms[0].reset();
+                            return;
                         }
 
                         if (this.id == 'cancelar-telefono') {
@@ -157,6 +164,8 @@
                             btnEditar[1].classList.remove('d-none');
                             btnHidden[2].classList.add('d-none');
                             btnHidden[3].classList.add('d-none');
+                            forms[1].reset();
+                            return;
                         }
 
                         if (this.id == 'cancelar-correo') {
@@ -164,6 +173,8 @@
                             btnEditar[2].classList.remove('d-none');
                             btnHidden[4].classList.add('d-none');
                             btnHidden[5].classList.add('d-none');
+                            forms[2].reset();
+                            return;
                         }
 
                         if (this.id == 'cancelar-direccion') {
@@ -171,6 +182,8 @@
                             btnEditar[3].classList.remove('d-none');
                             btnHidden[6].classList.add('d-none');
                             btnHidden[7].classList.add('d-none');
+                            forms[3].reset();
+                            return;
                         }
                     }
                 })
@@ -179,21 +192,25 @@
 
         // Funcionalidad al cerrar un modal
         modal.forEach(element => {
-            element.addEventListener('hidden.bs.modal', function(event) {
+            element.addEventListener('hide.bs.modal', function(event) {
                 if (this.id == 'updateEmpleado') {
                     inputs[0].setAttribute('disabled');
                     btnEditar[0].classList.remove('d-none');
                     btnHidden[0].classList.add('d-none');
                     btnHidden[1].classList.add('d-none');
+                    forms[0].reset();
+                    return;
                 }
+
+                $('#updateEmpleado').modal('show');
 
                 if (this.id == 'updateTelefono') {
                     inputs[1].setAttribute('disabled');
                     btnEditar[1].classList.remove('d-none');
                     btnHidden[2].classList.add('d-none');
                     btnHidden[3].classList.add('d-none');
-
-                    $('#updateEmpleado').modal('show');
+                    forms[1].reset();
+                    return;
                 }
 
                 if (this.id == 'updateCorreo') {
@@ -201,8 +218,8 @@
                     btnEditar[2].classList.remove('d-none');
                     btnHidden[4].classList.add('d-none');
                     btnHidden[5].classList.add('d-none');
-
-                    $('#updateEmpleado').modal('show');
+                    forms[2].reset();
+                    return;
                 }
 
                 if (this.id == 'updateDireccion') {
@@ -210,8 +227,8 @@
                     btnEditar[3].classList.remove('d-none');
                     btnHidden[6].classList.add('d-none');
                     btnHidden[7].classList.add('d-none');
-
-                    $('#updateEmpleado').modal('show');
+                    forms[3].reset();
+                    return;
                 }
             })
 

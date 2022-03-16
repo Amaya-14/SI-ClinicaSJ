@@ -49,6 +49,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* Módulo Personas*/
 Route::resource('pacientes', PacienteController::class);
 Route::resource('empleados', EmpleadoController::class);
+Route::get('perfil', function (){
+    return view('persona.perfil');
+});
 
 /* Módulo Control Personal */
 Route::resource('jornada-laboral', JornadaLaboralController::class);

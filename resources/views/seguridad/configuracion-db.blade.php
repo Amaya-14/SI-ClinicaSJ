@@ -86,7 +86,7 @@
                 <!-- tamaño total -->
                 <div class="d-flex justify-content-end">
                     <x-adminlte-button class="ml-1" type="submit" theme="primary" label="Realizar respaldo"
-                        data-toggle="modal" data-target="#createRespaldo" />
+                        data-bs-toggle="modal" data-bs-target="#createRespaldo" />
                 </div>
             </div>
             <!-- card-body -->
@@ -211,42 +211,57 @@
     </x-adminlte-modal>
     <!-- modal instrucciones tabla -->
 
-    <form action="" method="post">
+    <form id="form-u-respaldo" action="" method="post">
         {!! csrf_field() !!}
-        <x-adminlte-modal id="createRespaldo" title="Nuevo Respaldo" theme="teal" icon="fas fa-plus" v-centered
-            static-backdrop scrollable>
-            <section>
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="c-fecha-respaldo">Fecha respaldo<span
-                            class="text-danger">*</span></label>
-                    <input type="date" class="form-control" name="c-fecha-respaldo" id="c-fecha-respaldo"
-                        aria-label="Fehca de respaldo" aria-describedby="input-c-fecha-respaldo" readonly>
+        <div class="modal fade modals" id="createRespaldo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header bg-purple">
+                        <h4 class="modal-title" id="staticBackdropLabel">
+                            <i class="fas fa-eye mr-2"></i>
+                            Nuevo Respaldo
+                        </h4>
+                        <button type="button" class="btn-close" id="cerrar-modal" title="Cerrar"
+                            aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset id="inputs-u-respaldo" disabled>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="c-fecha-respaldo">Fecha respaldo<span
+                                        class="text-danger">*</span></label>
+                                <input type="date" class="form-control" name="c-fecha-respaldo" id="c-fecha-respaldo"
+                                    aria-label="Fehca de respaldo" aria-describedby="input-c-fecha-respaldo">
+                            </div>
+                            <!-- fecha de respaldo -->
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="s-usuario-respaldo">Usuario<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="s-usuario-respaldo" id="s-usuario-respaldo"
+                                    aria-label="Usuario" aria-describedby="input-s-usuario-respaldo">
+                            </div>
+                            <!-- usuario -->
+                            <div class="input-group">
+                                <label class="input-group-text" for="c-descripcion-respaldo">Descripción<span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" name="c-descripcion-respaldo" id="c-descripcion-respaldo"
+                                    aria-label="Motivo del respaldo" aria-describedby="input-c-descripcion-respaldo"
+                                    placeholder="Motivo del respaldo" required></textarea>
+                            </div>
+                            <!-- descripción del respaldo -->
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <x-adminlte-button class="btn-editar" type="button" theme="warning" label="Editar"
+                            id="editar-respaldo" />
+                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success" label="Guardar"
+                            id="actualizar-respaldo" />
+                        <x-adminlte-button class="ml-1 btn-cancelar btn-hidden d-none" theme="danger" label="Cancelar"
+                            id="cancelar-respaldo" />
+                    </div>
                 </div>
-                <!-- fecha de respaldo -->
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="s-usuario-respaldo">Usuario<span
-                            class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="s-usuario-respaldo" id="s-usuario-respaldo"
-                        aria-label="Usuario" aria-describedby="input-s-usuario-respaldo" readonly>
-                </div>
-                <!-- usuario -->
-                <div class="input-group">
-                    <label class="input-group-text" for="c-descripcion-respaldo">Descripción<span
-                            class="text-danger">*</span></label>
-                    <textarea class="form-control" name="c-descripcion-respaldo" id="c-descripcion-respaldo"
-                        aria-label="Motivo del respaldo" aria-describedby="input-c-descripcion-respaldo"
-                        placeholder="Motivo del respaldo" required></textarea>
-                </div>
-                <!-- descripción del respaldo -->
-            </section>
-            <!-- body modal -->
-            <x-slot name="footerSlot">
-                <x-adminlte-button type="submit" theme="success" label="Guardar" />
-                <x-adminlte-button theme="danger" label="Cancelar" data-dismiss="modal" />
-            </x-slot>
-            <!-- footer modal -->
-        </x-adminlte-modal>
-        <!-- modal nuevo respaldo -->
+            </div>
+        </div>
     </form>
     <!-- formulario nuevo respaldo -->
 

@@ -1,5 +1,5 @@
 <div>
-    <div class="modal fade modal-update" id="selectRespaldo" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    <div class="modal fade" id="selectRespaldo" tabindex="-1" aria-labelledby="staticBackdropLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">

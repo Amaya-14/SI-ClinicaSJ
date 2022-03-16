@@ -1,8 +1,8 @@
 <div>
-    <form action="" method="post">
+    <form id="form-u-1" action="" method="post">
         {!! csrf_field() !!}
         @method('put')
-        <div class="modal fade modal-update" id="updateMedicamento" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="updateMedicamento" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -11,10 +11,11 @@
                             <i class="fas fa-eye mr-2"></i>
                             Médicamento
                         </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" id="cerrar-modal" title="Cerrar"
+                            aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
-                        <fieldset class="input-request" disabled>
+                        <fieldset id="inputs-u-1" disabled>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="u-nombre-medicamento">Nombre<span
                                         class="text-danger">*</span></label>
@@ -53,7 +54,7 @@
                                 <textarea class="form-control" name="u-descripcion-medicamento"
                                     id="u-descripcion-medicamento" aria-label="Descripción del medicamento"
                                     aria-describedby="input-u-descricpcion-medicamento"
-                                    placeholder="Descripción(Opcional)"></textarea>
+                                    placeholder="Descripción(Opcional)" required></textarea>
                             </div>
                             <!-- descripción del medicamento -->
                         </fieldset>
@@ -61,8 +62,8 @@
                     <div class="modal-footer">
                         <x-adminlte-button class="btn-editar" type="button" theme="warning" label="Editar"
                             id="editar-1" />
-                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success"
-                            label="Guardar" />
+                        <x-adminlte-button class="ml-1 btn-hidden d-none" type="submit" theme="success" label="Guardar"
+                            id="actualizar-1" />
                         <x-adminlte-button class="ml-1 btn-cancelar btn-hidden d-none" type="reset" theme="danger"
                             label="Cancelar" id="cancelar-1" />
                     </div>
