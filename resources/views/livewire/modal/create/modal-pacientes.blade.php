@@ -12,7 +12,7 @@
                         aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-paciente" action="post">
+                    <form id="form-paciente" action="post" wire:submit.prevent="submit">
                         {!! csrf_field() !!}
                         <fieldset class="grid--responsive data" id="inputs-c-1">
                             <div class="input-group grid__item1">
@@ -20,7 +20,8 @@
                                         class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="c-identidad-paciente"
                                     id="c-identidad-paciente" aria-label="Indentidad del paciente"
-                                    aria-describedby="input-c-identidad-paciente" placeholder="Ingrese el DNI" required>
+                                    aria-describedby="input-c-identidad-paciente" placeholder="Ingrese el DNI"
+                                    wire:model.defer="identidad" required>
                             </div>
                             <!-- identidad -->
                             <div class="input-group grid__item2">
@@ -29,7 +30,7 @@
                                 <input type="text" class="form-control" name="c-nacionalidad-paciente"
                                     id="c-nacionalidad-paciente" aria-label="Nacionalidad del paciente"
                                     aria-describedby="input-c-nacionalidad-paciente"
-                                    placeholder="Ingrese la nacionalidad" required>
+                                    placeholder="Ingrese la nacionalidad" wire:model.defer="nacionalidad" required>
                             </div>
                             <!-- nacionalidad -->
                             <div class="input-group grid__item3">
@@ -37,12 +38,13 @@
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="c-nombre-paciente"
                                     id="c-nombre-paciente" aria-label="Nombre"
-                                    aria-describedby="input-c-nombre-paciente" placeholder="Ingrese el nombre" required>
+                                    aria-describedby="input-c-nombre-paciente" placeholder="Ingrese el nombre"
+                                    wire:model.defer="nombres" required>
                                 <!-- input nombres -->
                                 <input type="text" class="form-control" name="c-apellido-paciente"
                                     id="c-apellido-paciente" aria-label="Apellido"
                                     aria-describedby="input-c-apellido-paciente" placeholder="Ingrese los apellidos"
-                                    required>
+                                    wire:model.defer="apellidos" required>
                                 <!-- input apellidos -->
                             </div>
                             <!-- nombre y apellido -->
@@ -50,8 +52,9 @@
                                 <label class="input-group-text" for="c-sexo-paciente">Sexo<span
                                         class="text-danger">*</span></label>
                                 <select class="form-select" name="c-sexo-paciente" id="c-sexo-paciente"
-                                    aria-label="Sexo del paciente" aria-describedby="input-c-sexo-paciente" required>
-                                    <option selected disabled value="">Seleccione...</option>
+                                    aria-label="Sexo del paciente" aria-describedby="input-c-sexo-paciente"
+                                    wire:model.defer="sexo" required>
+                                    <option selected readonly value="">Seleccione...</option>
                                     <option value="H">Hombre</option>
                                     <option value="M">Mujer</option>
                                 </select>
@@ -62,14 +65,16 @@
                                     nacimiento<span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" name="c-fecha-nacimiento-paciente"
                                     id="c-fecha-nacimiento-paciente" aria-label="Fecha de nacimiento del paciente"
-                                    aria-describedby="input-c-fecha-nacimiento" required>
+                                    aria-describedby="input-c-fecha-nacimiento" wire:model.defer="fecha_nacimiento"
+                                    required>
                             </div>
                             <!-- fecha de nacimiento -->
                             <div class="input-group grid__item6">
                                 <label class="input-group-text" for="c-edad-paciente">Edad<span
                                         class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="c-edad-paciente" id="c-edad-paciente"
-                                    aria-label="Edad del paciente" aria-describedby="input-c-edad-paciente" required>
+                                    aria-label="Edad del paciente" aria-describedby="input-c-edad-paciente"
+                                    placeholder="Ingrese la edad" wire:model.defer="edad" required>
                             </div>
                             <!-- edad -->
                             <div class="input-group grid__item7">
@@ -77,7 +82,8 @@
                                     civil<span class="text-danger">*</span></label>
                                 <select class="form-select" name="c-estado-civil-paciente"
                                     id="c-estado-civil-paciente" aria-label="Estado civil del paciente"
-                                    aria-describedby="input-c-estado-civil-paciente" required>
+                                    aria-describedby="input-c-estado-civil-paciente" wire:model.defer="estado_civil"
+                                    required>
                                     <option selected disabled value="">Seleccione...</option>
                                     <option value="S">Soltero/a</option>
                                     <option value="C">Casado/a</option>
@@ -89,15 +95,17 @@
                             <div class="input-group grid__item8">
                                 <label class="input-group-text">Teléfono<span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" name="c-area-telefono" id="c-area-telefono"
-                                    aria-label="Area del telefono" aria-describedby="input-c-area-telefono" value="504"
-                                    required>
+                                    aria-label="Area del telefono" aria-describedby="input-c-area-telefono"
+                                    wire:model.defer="area" required>
                                 <!-- número de area -->
                                 <input type="number" class="form-control" name="c-numero-telefono"
                                     id="c-numero-telefono" aria-label="Número del teléfono"
-                                    aria-describedby="input-c-numero-telefono" placeholder="0000 0000" required>
+                                    aria-describedby="input-c-numero-telefono" placeholder="0000 0000"
+                                    wire:model.defer="telefono" required>
                                 <!-- número de teléfono -->
                                 <select class="form-select" name="c-tipo-telefono" id="c-tipo-telefono"
-                                    aria-label="Tipo de teléfono" aria-describedby="input-c-tipo-telefono" required>
+                                    aria-label="Tipo de teléfono" aria-describedby="input-c-tipo-telefono"
+                                    wire:model.defer="tipo_telefono" required>
                                     <option selected disabled value="">Tipo teléfono...</option>
                                     <option value="F">Fijo</option>
                                     <option value="M">Móvil</option>
@@ -105,8 +113,8 @@
                                 <!-- tipo de teléfono -->
                                 <input type="text" class="form-control" name="c-descripcion-telefono"
                                     id="c-descripcion-telefono" aria-label="Descripción del teléfono"
-                                    aria-describedby="input-c-descricpcion-telefono"
-                                    placeholder="Descripción(Opcional)">
+                                    aria-describedby="input-c-descricpcion-telefono" placeholder="Descripción(Opcional)"
+                                    wire:model.defer="descripcion">
                                 <!-- descripción teléfono -->
                             </div>
                             <!-- numero area, télefono, tipo teléfono, descripcion -->
@@ -114,11 +122,11 @@
                                 <label class="input-group-text">Dirección<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="c-direccion" id="c-direccion"
                                     aria-label="Dirección del paciente" aria-describedby="input-c-direccion"
-                                    placeholder="Ingrese la dirección" required>
+                                    placeholder="Ingrese la dirección" wire:model.defer="direccion" required>
                                 <!-- dirección del paciente -->
                                 <input type="text" class="form-control" name="c-referencia" id="c-referencia"
                                     aria-label="Referencia de la dirección" aria-describedby="input-c-referencia"
-                                    placeholder="Referencia(Opcional)">
+                                    placeholder="Referencia(Opcional)" wire:model.defer="referencia">
                                 <!-- referencia del paciente -->
                             </div>
                             <!-- dirección, referencia -->
@@ -127,7 +135,7 @@
                                 <input type="email" class="form-control" name="c-correo-paciente"
                                     id="c-correo-paciente" aria-label="Correo del paciente"
                                     aria-describedby="input-c-correo-paciente" placeholder="example@example.com"
-                                    required>
+                                    wire:model.defer="correo" required>
                             </div>
                             <!-- correo -->
                         </fieldset>

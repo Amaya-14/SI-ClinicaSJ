@@ -13,8 +13,8 @@
                 </div>
                 <div class="modal-body">
                     <!-- información -->
-                    <div class="mb-5">
-                        <form id="form-u-1" action="" method="post">
+                    <div>
+                        <form id="form-u-1" action="#" method="post">
                             {!! csrf_field() !!}
                             @method('put')
                             <!-- botones de edición, submit y cancelar -->
@@ -38,7 +38,7 @@
                                     <input type="number" class="form-control" name="u-identidad-paciente"
                                         id="u-identidad-paciente" aria-label="Indentidad del paciente"
                                         aria-describedby="input-u-identidad-paciente" placeholder="Ingrese el DNI"
-                                        required>
+                                        wire:model.defer="identidad" required>
                                 </div>
                                 <!-- nacionalidad -->
                                 <div class="input-group grid__item2">
@@ -47,7 +47,7 @@
                                     <input type="text" class="form-control" name="u-nacionalidad-paciente"
                                         id="u-nacionalidad-paciente" aria-label="Nacionalidad del paciente"
                                         aria-describedby="input-u-nacionalidad-paciente"
-                                        placeholder="Ingrese la nacionalidad" required>
+                                        placeholder="Ingrese la nacionalidad" wire:model.defer="nacionalidad" required>
                                 </div>
                                 <!-- nombre y apellido -->
                                 <div class="input-group grid__item3">
@@ -57,12 +57,12 @@
                                     <input type="text" class="form-control" name="u-nombre-paciente"
                                         id="u-nombre-paciente" aria-label="Nombre"
                                         aria-describedby="input-u-nombre-paciente" placeholder="Ingrese el nombre"
-                                        required>
+                                        wire:model.defer="nombres" required>
                                     <!-- input apellidos -->
                                     <input type="text" class="form-control" name="u-apellido-paciente"
                                         id="u-apellido-paciente" aria-label="Apellido"
                                         aria-describedby="input-u-apellido-paciente" placeholder="Ingrese los apellidos"
-                                        required>
+                                        wire:model.defer="apellidos" required>
                                 </div>
                                 <!-- sexo -->
                                 <div class="input-group grid__item4">
@@ -70,9 +70,9 @@
                                             class="text-danger">*</span></label>
                                     <select class="form-select" name="u-sexo-paciente" id="u-sexo-paciente"
                                         aria-label="Sexo del paciente" aria-describedby="input-u-sexo-paciente"
-                                        required>
-                                        <option selected disabled value="">Seleccione...</option>
-                                        <option value="H">Hombre</option>
+                                        wire:model.defer="sexo" required>
+                                        <option disabled value="">Seleccione...</option>
+                                        <option value="H" Selected>Hombre</option>
                                         <option value="M">Mujer</option>
                                     </select>
                                 </div>
@@ -82,7 +82,8 @@
                                         nacimiento<span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" name="u-fecha-nacimiento-paciente"
                                         id="u-fecha-nacimiento-paciente" aria-label="Fecha de nacimiento del paciente"
-                                        aria-describedby="input-u-fecha-nacimiento" required>
+                                        aria-describedby="input-u-fecha-nacimiento" wire:model.defer="fecha_nacimiento"
+                                        required>
                                 </div>
                                 <!-- edad -->
                                 <div class="input-group grid__item6">
@@ -90,7 +91,7 @@
                                             class="text-danger">*</span></label>
                                     <input type="number" class="form-control" name="u-edad-paciente"
                                         id="u-edad-paciente" aria-label="Edad del paciente"
-                                        aria-describedby="input-u-edad-paciente" required>
+                                        aria-describedby="input-u-edad-paciente" wire:model.defer="edad" required>
                                 </div>
                                 <!-- estado civil -->
                                 <div class="input-group grid__item7">
@@ -98,8 +99,9 @@
                                         civil<span class="text-danger">*</span></label>
                                     <select class="form-select" name="u-estado-civil-paciente"
                                         id="u-estado-civil-paciente" aria-label="Estado civil del paciente"
-                                        aria-describedby="input-u-estado-civil-paciente" required>
-                                        <option selected disabled value="">Seleccione...</option>
+                                        aria-describedby="input-u-estado-civil-paciente" wire:model.defer="estado_civil"
+                                        required>
+                                        <option disabled value="">Seleccione...</option>
                                         <option value="S">Soltero/a</option>
                                         <option value="C">Casado/a</option>
                                         <option value="D">Divorciado/a</option>
@@ -108,124 +110,60 @@
                                 </div>
                             </fieldset>
                         </form>
-                    </div>
-                    <!-- teléfono -->
-                    <div class="mb-5">
+                        <!-- botones de edición, submit y cancelar -->
                         <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="m-0">Teléfonos</h4>
-                            <x-adminlte-button class="btn-sm bg-teal btn-sm" label="Nuevo télefono" icon="fas fa-plus"
-                                data-bs-toggle="modal" data-bs-target="#createTelefono" />
+                            <h4 class="m-0">Contacto</h4>
+                            <div>
+                                <a href="#" class="btn btn-primary btn-sm">Gestionar Contacto</a>
+                            </div>
                         </div>
                         <hr class="m-0 mt-1 mb-2">
-                        <div class="table-responsive text-center">
-                            <table class="table table-light">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Area</th>
-                                        <th scope="col">Número</th>
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Descripción</th>
-                                        <th scope="col">Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>504</td>
-                                        <td>00000000</td>
-                                        <td>Celular</td>
-                                        <td>Personal</td>
-                                        <td>
-                                            <button class="btn btn-xs btn-danger text-white mx-1 shadow"
-                                                title="Eliminar registro">
-                                                <i class="fa fa-lg fa-fw fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
-                                                title="Ver/Editar registro" data-bs-toggle="modal"
-                                                data-bs-target="#updateTelefono">
-                                                <i class="fas fa-lg fa-fw fa-eye"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div>
+                            @if (!empty($telefonos))
+                                @foreach ($telefonos as $telefono)
+                                    <div class="input-group mb-2">
+                                        <label class="input-group-text">Teléfono</label>
+                                        <!-- número de teléfono -->
+                                        <input type="text" class="form-control" aria-label="Número de teléfono"
+                                            aria-describedby="número de teléfono" value="{!! '+' . $telefono->area . ' ' . $telefono->telefono !!}"
+                                            readonly>
+                                        <!-- tipo de teléfono -->
+                                        <input type="text" class="form-control" aria-label="Tipo de teléfono"
+                                            aria-describedby="tipo de teléfono" value="{!! $telefono->tipo !!}"
+                                            readonly>
+                                        <!-- descripción teléfono -->
+                                        <input type="text" class="form-control" aria-label="Descripción de teléfono"
+                                            aria-describedby="descripción de teléfono" value="{!! $telefono->descripcion !!}"
+                                            readonly>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
-                    </div>
-                    <!-- correo -->
-                    <div class="mb-5">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="m-0">Correo</h4>
-                            <x-adminlte-button class="btn-sm bg-teal" label="Nuevo correo" icon="fas fa-plus"
-                                data-bs-toggle="modal" data-bs-target="#createCorreo" />
+                        <div class="d-flex justify-content-between">
+                            @if (!empty($correos))
+                                @foreach ($correos as $correo)
+                                    <div class="input-group mb-2">
+                                        <label class="input-group-text">Correo</label>
+                                        <input type="email" class="form-control" aria-label="Correo"
+                                            aria-describedby="correo" value="{!! $correo->correo !!}" readonly>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
-                        <hr class="m-0 mt-1 mb-2">
-                        <div class="table-responsive text-center">
-                            <table class="table table-light">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>daniel@example.com</td>
-                                        <td>
-                                            <button class="btn btn-xs btn-danger text-white mx-1 shadow"
-                                                title="Eliminar registro">
-                                                <i class="fa fa-lg fa-fw fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
-                                                title="Ver/Editar registro" data-bs-toggle="modal"
-                                                data-bs-target="#updateCorreo">
-                                                <i class="fas fa-lg fa-fw fa-eye"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- dirección -->
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h4 class="m-0">Direcciones</h4>
-                            <x-adminlte-button class="btn-sm bg-teal" label="Nueva dirección" icon="fas fa-plus"
-                                data-bs-toggle="modal" data-bs-target="#createDireccion" />
-                        </div>
-                        <hr class="m-0 mt-1 mb-2">
-                        <div class="table-responsive text-center">
-                            <table class="table table-light">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Dirección</th>
-                                        <th scope="col">Referencia</th>
-                                        <th scope="col">Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Col. xxx</td>
-                                        <td> ------ </td>
-                                        <td>
-                                            <button class="btn btn-xs btn-danger text-white mx-1 shadow"
-                                                title="Eliminar registro">
-                                                <i class="fa fa-lg fa-fw fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-xs btn-secondary text-white mx-1 shadow"
-                                                title="Ver/Editar registro" data-bs-toggle="modal"
-                                                data-bs-target="#updateDireccion">
-                                                <i class="fas fa-lg fa-fw fa-eye"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div>
+                            @if (!empty($direcciones))
+                                @foreach ($direcciones as $direccion)
+                                    <div class="input-group mb-2">
+                                        <label class="input-group-text">Dirección</label>
+                                        <!-- dirección -->
+                                        <input type="text" class="form-control" aria-label="Dirección"
+                                            aria-describedby="dirección" value="{!! $direccion->direccion !!}" readonly>
+                                        <!-- referencia -->
+                                        <input type="text" class="form-control" aria-label="Referencia"
+                                            aria-describedby="referencia" value="{!! $direccion->descripcion !!}" readonly>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -237,11 +175,4 @@
             </div>
         </div>
     </div>
-
-    @livewire('modal.create.modal-telefono')
-    @livewire('modal.create.modal-correo')
-    @livewire('modal.create.modal-direccion')
-    @livewire('modal.update.modal-telefono')
-    @livewire('modal.update.modal-correo')
-    @livewire('modal.update.modal-direccion')
 </div>

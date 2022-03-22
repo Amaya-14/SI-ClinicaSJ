@@ -1,11 +1,11 @@
-const { isEmpty } = require("lodash");
+//const { isEmpty } = require("lodash");
 
-/**/
+/*
 let modal = document.querySelectorAll(".modal");
 console.log(modal);
-let formulario = document.getElementsByName("form");
+let formulario = document.getElementsByName("form");*/
 
-/* */
+/* 
 let idModal;
 let btn = document.querySelectorAll(".btn-editar");
 let arrOld = [];
@@ -20,9 +20,9 @@ const TOAST = Swal.mixin({
         toast.addEventListener("mouseenter", Swal.stopTimer);
         toast.addEventListener("mouseleave", Swal.resumeTimer);
     },
-});
+});*/
 
-/* */
+/* 
 document.addEventListener("click", (evento) => {
     switch (evento.target.id) {
         case "editar-1":
@@ -150,9 +150,9 @@ document.addEventListener("click", (evento) => {
         default:
             break;
     }
-});
+});*/
 
-/* */
+/* 
 document.addEventListener("hide.bs.modal", (event) => {
     if (
         event.target.matches("#updateTelefono") ||
@@ -168,9 +168,9 @@ document.addEventListener("hide.bs.modal", (event) => {
         event.target.matches("#createDireccion")
     )
         $("#updatePaciente" || "#updateEmpleado").modal("show");
-});
+});*/
 
-/* */
+/* 
 document.addEventListener("shown.bs.modal", (event) => {
     arrOld = [];
     inputs = document.querySelector("#" + event.target.getAttribute("name"));
@@ -183,9 +183,9 @@ document.addEventListener("shown.bs.modal", (event) => {
     for (const el of inputs.elements) {
         arrOld.push(el.value);
     }
-});
+});*/
 
-/* */
+/* 
 function toggleEdicion(
     bool,
     btnEditar,
@@ -217,17 +217,17 @@ function toggleEdicion(
             limpiarFormulario(form);
         }
     });
-}
+}*/
 
-/* */
+/* 
 function limpiarFormulario(id) {
     document.querySelector(id).reset();
-}
+}*/
 
-/* */
+/* 
 function cerrarModal(id) {
     $("#" + id).modal("hide");
-}
+}*/
 
 /*let fields = document.querySelector("#inputs-u-cita");
 console.log(fields.elements);
