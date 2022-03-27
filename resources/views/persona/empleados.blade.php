@@ -16,7 +16,9 @@
         .grid__item3,
         .grid__item8,
         .grid__item9,
-        .grid__item10 {
+        .grid__item10,
+        .grid__item11,
+        .grid__item14 {
             grid-column-start: 1;
             grid-column-end: -1;
         }
@@ -38,200 +40,494 @@
             box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
         }
 
+        .col_center {
+            text-align: center;
+        }
+
     </style>
 @stop
 
 @section('content_header')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title m-0">Lista de empleados</h3>
-            <div class="card-tools m-0">
-                <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
-                    title="información"></i>
+    <x-card>
+        @slot('titulo', 'Lista de empleados')
+        @slot('idModalInstruccion', 'modalInstrucciones')
+        @slot('idBoton', 'createEmpleado')
+        @slot('tabla')
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabla-empleados" style="width: 100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Identidad</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Fecha Nacimiento</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <!-- card-tools -->
-        </div>
-        <!-- card-header -->
-        <div class="card-body">
-            <div class="d-flex justify-content-end align-items-center mb-3">
-                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-bs-toggle="modal"
-                    data-bs-target="#createEmpleado" />
-            </div>
-            <div>
-                @livewire('data-table.tabla-empleados')
-            </div>
-        </div>
-        <!-- card-body -->
-        <div class="card-footer d-flex justify-content-end">
-        </div>
-        <!-- card-footer -->
-    </div>
-    <!-- card -->
+        @endslot
+    </x-card>
 @stop
 
 @section('content')
-    <x-adminlte-modal id="modalInstrucciones" title="Instrucciones" theme="info" icon="fas fa-info" v-centered scrollable>
-        <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
-            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
-        </section>
-        <!-- body modal -->
-        <x-slot name="footerSlot">
-            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
-            <!-- bottones modal -->
-        </x-slot>
-        <!-- footer modal -->
-    </x-adminlte-modal>
-    <!-- modal instrucciones -->
+    <x-modal.create.create-empleado />
+    <x-modal.update.update-empleado />
+    <x-modal.view.view-empleado />
 
-    @livewire('modal.create.modal-empleados')
-    @livewire('modal.update.modal-empleados')
+    <x-moda-instruccion>
+        @slot('id', 'modalInstrucciones')
+        @slot('titulo', 'Instrucciones')
+    </x-moda-instruccion>
 @stop
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
-        // Variables
-        let inputs = document.querySelectorAll(".input-request");
-        let btnEditar = document.querySelectorAll(".btn-editar");
-        let btnCancelar = document.querySelectorAll(".btn-cancelar");
-        let btnHidden = document.querySelectorAll(".btn-hidden");
-        let modal = document.querySelectorAll('.modals');
-        let forms = document.querySelectorAll('.formulario');
+        let idTabla = 'tabla-empleados';
+        let idFormCrearEmpleado = 'crear_empleado';
+        let idFormUpdateEmpleado = 'actualizar_empleado';
+        let idModalCreateEmpleado = 'createEmpleado';
+        let idModalUpdateEmpleado = 'updateEmpleado';
+        let idPersona;
 
-        // Funcionalidad de los button editar
-        btnEditar.forEach(element => {
-            element.addEventListener('click', function() {
-                if (this.id == 'editar-persona') {
-                    inputs[0].removeAttribute('disabled');
-                    btnEditar[0].classList.add('d-none');
-                    btnHidden[0].classList.remove('d-none');
-                    btnHidden[1].classList.remove('d-none');
-                    return;
+        /* */
+        $('#' + idTabla).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('empleados.index') !!}',
+            "order": [
+                [5, 'asc']
+            ],
+            columns: [{
+                    data: 'nombre',
+                },
+                {
+                    data: 'identidad'
+                },
+                {
+                    data: 'edad',
+                },
+                {
+                    data: 'fechaNacimiento'
+                },
+                {
+                    data: 'sexo'
+                },
+                {
+                    data: 'cargo'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
                 }
-
-                if (this.id == 'editar-telefono') {
-                    inputs[1].removeAttribute('disabled');
-                    btnEditar[1].classList.add('d-none');
-                    btnHidden[2].classList.remove('d-none');
-                    btnHidden[3].classList.remove('d-none');
-                    return;
+            ],
+            "columnDefs": [{
+                    className: "col_center",
+                    "targets": [1]
+                },
+                {
+                    className: "col_center",
+                    "targets": [2]
+                },
+                {
+                    className: "col_center",
+                    "targets": [3]
+                },
+                {
+                    className: "col_center",
+                    "targets": [4]
+                },
+                {
+                    className: "col_center",
+                    "targets": [5]
+                },
+                {
+                    className: "col_center",
+                    "targets": [6]
                 }
-
-                if (this.id == 'editar-correo') {
-                    inputs[2].removeAttribute('disabled');
-                    btnEditar[2].classList.add('d-none');
-                    btnHidden[4].classList.remove('d-none');
-                    btnHidden[5].classList.remove('d-none');
-                    return;
-                }
-
-                if (this.id == 'editar-direccion') {
-                    inputs[3].removeAttribute('disabled');
-                    btnEditar[3].classList.add('d-none');
-                    btnHidden[6].classList.remove('d-none');
-                    btnHidden[7].classList.remove('d-none');
-                    return;
-                }
-            });
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
         });
+    </script>
 
-        // Funcionalidad de los button cancelar
-        btnCancelar.forEach(element => {
-            element.addEventListener('click', function() {
-                Swal.fire({
-                    icon: 'question',
-                    title: '¿En realidad deas cancelar esta acción?',
-                    text: '¡Tus cambios se perderán!',
-                    confirmButtonText: 'Si, cancelar',
-                    showDenyButton: true,
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        if (this.id == 'cancelar-persona') {
-                            inputs[0].setAttribute('disabled');
-                            btnEditar[0].classList.remove('d-none');
-                            btnHidden[0].classList.add('d-none');
-                            btnHidden[1].classList.add('d-none');
-                            forms[0].reset();
-                            return;
-                        }
-
-                        if (this.id == 'cancelar-telefono') {
-                            inputs[1].setAttribute('disabled');
-                            btnEditar[1].classList.remove('d-none');
-                            btnHidden[2].classList.add('d-none');
-                            btnHidden[3].classList.add('d-none');
-                            forms[1].reset();
-                            return;
-                        }
-
-                        if (this.id == 'cancelar-correo') {
-                            inputs[2].setAttribute('disabled');
-                            btnEditar[2].classList.remove('d-none');
-                            btnHidden[4].classList.add('d-none');
-                            btnHidden[5].classList.add('d-none');
-                            forms[2].reset();
-                            return;
-                        }
-
-                        if (this.id == 'cancelar-direccion') {
-                            inputs[3].setAttribute('disabled');
-                            btnEditar[3].classList.remove('d-none');
-                            btnHidden[6].classList.add('d-none');
-                            btnHidden[7].classList.add('d-none');
-                            forms[3].reset();
-                            return;
-                        }
+    <script>
+        /* */
+        $('#' + idFormCrearEmpleado).submit(function(event) {
+            event.preventDefault();
+            console.log($('#c_foto').val())
+            $.ajax({
+                type: 'POST',
+                url: '/empleados',
+                data: $('#' + idFormCrearEmpleado).serialize(),
+                success: function(response) {
+                    if (response.statusCode == 201) {
+                        $("#" + idModalCreateEmpleado).modal("hide");
+                        $('#' + idFormCrearEmpleado).trigger("reset");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro creado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $('#' + idTabla).DataTable().ajax.reload();
                     }
-                })
+
+                    if (response.statusCode != 201) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo crear el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                },
+                error: function(err) {
+                    console.log(err)
+                }
             });
-        });
+        })
+    </script>
 
-        // Funcionalidad al cerrar un modal
-        modal.forEach(element => {
-            element.addEventListener('hide.bs.modal', function(event) {
-                if (this.id == 'updateEmpleado') {
-                    inputs[0].setAttribute('disabled');
-                    btnEditar[0].classList.remove('d-none');
-                    btnHidden[0].classList.add('d-none');
-                    btnHidden[1].classList.add('d-none');
-                    forms[0].reset();
-                    return;
+    <script>
+        /* */
+        function ver(id) {
+            $.ajax({
+                type: 'GET',
+                url: "empleados/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        persona = response[0];
+                        idPersona = persona.empleado;
+                        $('#v_identidad').val(persona.dni);
+                        $('#v_nacionalidad').val(persona.nacionalidad);
+                        $('#v_nombre').val(persona.nombres);
+                        $('#v_apellido').val(persona.apellidos);
+                        $('#v_sexo').val(persona.sexo);
+                        $('#v_fecha_nacimiento').val(persona.fechaNacimiento);
+                        $('#v_edad').val(persona.edad);
+                        $('#v_estado_civil').val(persona.estadoCivil);
+                        $('#v_fecha_contratacion').val(persona.fechaContratacion);
+                        $('#v_cargo').val(persona.nombreCargo);
+                        $('#btn-actualizar').attr('onclick', `actualizar("${persona.persona}")`);
+
+                        let telefonos = response[1];
+                        if (telefonos.length) {
+                            let limitF = 1;
+                            let limitC = 1;
+                            for (let i = 0; i < telefonos.length; i++) {
+                                if (telefonos[`${i}`].tipoTelefono == 'F' && limitF) {
+                                    $('#cod_telefono_fijo').val(telefonos[`${i}`].codTelefono);
+                                    $('#v_area_telefono_fijo').val(telefonos[`${i}`].numArea);
+                                    $('#v_numero_telefono_fijo').val(telefonos[`${i}`].numTelefono);
+                                    $('#v_tipo_telefono_fijo').val(telefonos[`${i}`].tipoTelefono);
+                                    $('#v_descripcion_telefono_fijo').val(telefonos[`${i}`]
+                                        .descripcionTelefono);
+                                    limitF = 0;
+                                }
+
+                                if (telefonos[`${i}`].tipoTelefono == 'C' && limitC) {
+                                    $('#cod_telefono_celular').val(telefonos[`${i}`].codTelefono);
+                                    $('#v_area_telefono_celular').val(telefonos[`${i}`].numArea);
+                                    $('#v_numero_telefono_celular').val(telefonos[`${i}`].numTelefono);
+                                    $('#v_tipo_telefono_celular').val(telefonos[`${i}`].tipoTelefono);
+                                    $('#v_descripcion_telefono_celular').val(telefonos[`${i}`]
+                                        .descripcionTelefono);
+                                    limitC = 0;
+                                }
+                            }
+                        }
+
+                        let direccion = response[2][0];
+                        if (response[2].length > 0) {
+                            $('#cod_direccion').val(direccion.codDireccion);
+                            $('#v_direccion').val(direccion.direccion);
+                            $('#v_referencia').val(direccion.descripcionDireccion);
+                        }
+                        if (response[3].length > 0) {
+                            $('#cod_correo').val(response[3][0].codCorreo);
+                            $('#v_correo').val(response[3][0].correo);
+                        }
+                        $("#viewEmpleado").modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
+    </script>
 
-                $('#updateEmpleado').modal('show');
+    <script>
+        /* */
+        function editar(id) {
+            $.ajax({
+                type: 'GET',
+                url: "empleados/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        persona = response[0];
+                        idPersona = persona.empleado;
+                        $('#u_identidad').val(persona.dni);
+                        $('#u_nacionalidad').val(persona.nacionalidad);
+                        $('#u_nombre').val(persona.nombres);
+                        $('#u_apellido').val(persona.apellidos);
+                        $('#u_sexo').val(persona.sexo);
+                        $('#u_fecha_nacimiento').val(persona.fechaNacimiento);
+                        $('#u_edad').val(persona.edad);
+                        $('#u_estado_civil').val(persona.estadoCivil);
+                        $('#u_fecha_contratacion').val(persona.fechaContratacion);
+                        $(`#u_cargo option:contains('${persona.nombreCargo}')`).prop("selected", true);
+                        $('#btn-actualizar').attr('onclick', `actualizar("${persona.persona}")`);
 
-                if (this.id == 'updateTelefono') {
-                    inputs[1].setAttribute('disabled');
-                    btnEditar[1].classList.remove('d-none');
-                    btnHidden[2].classList.add('d-none');
-                    btnHidden[3].classList.add('d-none');
-                    forms[1].reset();
-                    return;
+                        let telefonos = response[1];
+                        if (telefonos.length) {
+                            let limitF = 1;
+                            let limitC = 1;
+                            for (let i = 0; i < telefonos.length; i++) {
+                                if (telefonos[`${i}`].tipoTelefono == 'F' && limitF) {
+                                    $('#cod_telefono_fijo').val(telefonos[`${i}`].codTelefono);
+                                    $('#u_area_telefono_fijo').val(telefonos[`${i}`].numArea);
+                                    $('#u_numero_telefono_fijo').val(telefonos[`${i}`].numTelefono);
+                                    $('#u_tipo_telefono_fijo').val(telefonos[`${i}`].tipoTelefono);
+                                    $('#u_descripcion_telefono_fijo').val(telefonos[`${i}`]
+                                        .descripcionTelefono);
+                                    limitF = 0;
+                                }
+
+                                if (telefonos[`${i}`].tipoTelefono == 'C' && limitC) {
+                                    $('#cod_telefono_celular').val(telefonos[`${i}`].codTelefono);
+                                    $('#u_area_telefono_celular').val(telefonos[`${i}`].numArea);
+                                    $('#u_numero_telefono_celular').val(telefonos[`${i}`].numTelefono);
+                                    $('#u_tipo_telefono_celular').val(telefonos[`${i}`].tipoTelefono);
+                                    $('#u_descripcion_telefono_celular').val(telefonos[`${i}`]
+                                        .descripcionTelefono);
+                                    limitC = 0;
+                                }
+                            }
+                        }
+
+                        let direccion = response[2][0];
+                        if (response[2].length > 0) {
+                            $('#cod_direccion').val(direccion.codDireccion);
+                            $('#u_direccion').val(direccion.direccion);
+                            $('#u_referencia').val(direccion.descripcionDireccion);
+                        }
+                        if (response[3].length > 0) {
+                            $('#cod_correo').val(response[3][0].codCorreo);
+                            $('#u_correo').val(response[3][0].correo);
+                        }
+                        $("#" + idModalUpdateEmpleado).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
 
-                if (this.id == 'updateCorreo') {
-                    inputs[2].setAttribute('disabled');
-                    btnEditar[2].classList.remove('d-none');
-                    btnHidden[4].classList.add('d-none');
-                    btnHidden[5].classList.add('d-none');
-                    forms[2].reset();
-                    return;
+        /* */
+        function actualizar(id) {
+            $.ajax({
+                type: 'PUT',
+                url: "empleados/" + id,
+                data: $('#' + idFormUpdateEmpleado).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 200) {
+                        $('#' + idTabla).DataTable().ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro actualizado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $("#" + idModalUpdateEmpleado).modal("hide");
+                        editar(idPersona);
+                    }
+
+                    if (response.statusCode != 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo actualizar el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
+    </script>
 
-                if (this.id == 'updateDireccion') {
-                    inputs[3].setAttribute('disabled');
-                    btnEditar[3].classList.remove('d-none');
-                    btnHidden[6].classList.add('d-none');
-                    btnHidden[7].classList.add('d-none');
-                    forms[3].reset();
-                    return;
+    <script>
+        /* */
+        function eliminar(id) {
+            Swal.fire({
+                title: '¿Eliminar el registro?',
+                text: "¡No podrá revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "empleados/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.statusCode == 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El registro no se pudo eliminar',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                return;
+                            }
+
+                            if (response.statusCode != 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 4000,
+                                    timerProgressBar: true,
+                                    icon: 'success',
+                                    title: 'Registro eliminado',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                $('#' + idTabla).DataTable().ajax.reload();
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr.status);
+                            console.log(thrownError);
+                        }
+                    });
                 }
             })
+        }
+    </script>
 
-        });
+    <script>
+        function cerrarModal(id, form) {
+            Swal.fire({
+                title: '¿Está seguro/a?',
+                text: "¡Los cambios que no haya guardado se perderán!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, salir',
+                cancelButtonText: 'No',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#" + id).modal("hide");
+                    $('#' + form).trigger("reset");
+                }
+            })
+        }
     </script>
 @stop

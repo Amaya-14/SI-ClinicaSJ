@@ -4,4 +4,5 @@ Livewire.on("abrirModal", function (id) {
 
 Livewire.on("cerrarModal", function (id) {
     $("#" + id).modal("hide");
+    $('#tabla-pacientes').DataTable().ajax.reload();
 });
