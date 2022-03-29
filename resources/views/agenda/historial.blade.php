@@ -35,125 +35,402 @@
             box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
         }
 
+        .col_center {
+            text-align: center;
+        }
+
     </style>
 @stop
 
 @section('content_header')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Historial de citas</h3>
-            <div class="card-tools m-0">
-                <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-bs-toggle="modal" data-bs-target="#modalInstrucciones"
-                    title="información"></i>
+    <x-card>
+        @slot('titulo', 'Lista de citas')
+        @slot('idModalInstruccion', 'modalInstrucciones')
+        @slot('idBoton', 'createCita')
+        @slot('tabla')
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabla-citas" style="width: 100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <!-- card-tools -->
-        </div>
-        <!-- card-header -->
-        <div class="card-body">
-            <div class="d-flex justify-content-end align-items-center mb-3">
-                <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-bs-toggle="modal"
-                    data-bs-target="#createCita" />
-            </div>
-            @livewire('data-table.tabla-historial-cita')
-        </div>
-        <!-- card-body -->
-        <div class="card-footer d-flex justify-content-end">
-        </div>
-        <!-- card-footer -->
-    </div>
-    <!-- card -->
+        @endslot
+    </x-card>
 @stop
 
 @section('content')
-    <x-adminlte-modal id="modalInstrucciones" title="Instrucciones" theme="info" icon="fas fa-info" v-centered scrollable>
-        <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
-            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
-        </section>
-        <!-- body modal -->
-        <x-slot name="footerSlot">
-            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
-            <!-- bottones modal -->
-        </x-slot>
-        <!-- footer modal -->
-    </x-adminlte-modal>
-    <!-- modal instrucciones -->
+    <x-modal.create.create-cita />
+    <x-modal.update.update-cita />
+    <x-modal.view.view-cita />
 
-    @livewire('modal.create.modal-cita')
-    @livewire('modal.update.modal-cita')
+    <x-moda-instruccion>
+        @slot('id', 'modalInstrucciones')
+        @slot('titulo', 'Instrucciones')
+    </x-moda-instruccion>
 @stop
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        // Variables
-        let inputs = document.querySelectorAll(".input-request");
-        let btnEditar = document.querySelectorAll(".btn-editar");
-        let btnCancelar = document.querySelectorAll(".btn-cancelar");
-        let btnHidden = document.querySelectorAll(".btn-hidden");
-        let modal = document.querySelectorAll('.modal-update');
+        let idTabla = 'tabla-citas';
+        let idModalCreateCita = 'createCita';
+        let idFormCreateCita = 'crear_cita';
+        let idModalUpdateCita = 'updateCita';
+        let idFormUpdateCita = 'actualizar_cita';
+        let idModalViewCita = 'viewCita';
 
-        // Funcionalidad de los button editar
-        btnEditar.forEach(element => {
-            element.addEventListener('click', function() {
-                if (this.id == 'editar-1') {
-                    inputs[0].removeAttribute('disabled');
-                    btnEditar[0].classList.add('d-none');
-                    btnHidden[0].classList.remove('d-none');
-                    btnHidden[1].classList.remove('d-none');
+        $("#habilitar-edicion").addClass("d-none");
+    </script>
+    <script>
+        $('#' + idTabla).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('historial.index') !!}',
+            columns: [{
+                    data: 'doctor'
+                },
+                {
+                    data: 'paciente'
+                },
+                {
+                    data: 'fechaInicio'
+                },
+                {
+                    data: 'estado'
+                },
+                {
+                    data: 'tipo'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
                 }
-
-                if (this.id == 'editar-2') {
-                    inputs[1].removeAttribute('disabled');
-                    btnEditar[1].classList.add('d-none');
-                    btnHidden[2].classList.remove('d-none');
-                    btnHidden[3].classList.remove('d-none');
-                }
-
-                if (this.id == 'editar-3') {
-                    inputs[2].removeAttribute('disabled');
-                    btnEditar[2].classList.add('d-none');
-                    btnHidden[4].classList.remove('d-none');
-                    btnHidden[5].classList.remove('d-none');
-                }
-            });
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }],
+            "order": [
+                [2, 'desc']
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
         });
+    </script>
 
-        // Funcionalidad de los button cancelar
-        btnCancelar.forEach(element => {
-            element.addEventListener('click', function() {
-                Swal.fire({
-                    icon: 'question',
-                    title: '¿En realidad deas cancelar esta acción?',
-                    text: '¡Tus cambios se perderán!',
-                    confirmButtonText: 'Si, cancelar',
-                    showDenyButton: true,
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        if (this.id == 'cancelar-1') {
-                            inputs[0].setAttribute('disabled');
-                            btnEditar[0].classList.remove('d-none');
-                            btnHidden[0].classList.add('d-none');
-                            btnHidden[1].classList.add('d-none');
-                        }
+    <script>
+        $("#" + idFormCreateCita).submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: 'citas',
+                data: $("#" + idFormCreateCita).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 201) {
+                        $("#" + idModalCreateCita).modal("hide");
+                        $("#" + idFormCreateCita).trigger("reset");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Cita creada exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $('#' + idTabla).DataTable().ajax.reload();
                     }
-                })
+
+                    if (response.statusCode != 201) {
+                        //console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo crear la cita correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se pudo crear la cita correctamente',
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal
+                                .resumeTimer)
+                        }
+                    })
+                }
             });
         });
+    </script>
 
-        // Funcionalidad al cerrar un modal
-        modal.forEach(element => {
-            element.addEventListener('hidden.bs.modal', function(event) {
-                if (this.id == 'updateCita' && btnEditar[0].classList.contains('d-none')) {
-                    inputs[0].setAttribute('disabled');
-                    btnEditar[0].classList.remove('d-none');
-                    btnHidden[0].classList.add('d-none');
-                    btnHidden[1].classList.add('d-none');
+    <script>
+        /* */
+        function ver(id) {
+            $.ajax({
+                type: 'GET',
+                url: "citas/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $("#v_doctor_cita").val(response.doctor);
+                        $("#v_paciente_cita").val(response.paciente);
+                        $("#v_estado_cita").val(response.estado);
+                        $("#v_tipo_cita").val(response.tipo);
+                        $("#v_fecha_inicio_cita").val(response.fechaInicio);
+                        $("#v_hora_inicio_cita").val(response.horaInicio);
+                        $("#v_fecha_final_cita").val(response.fechaFinal);
+                        $("#v_hora_final_cita").val(response.horaFinal);
+                        $("#v_descripcion_cita").val(response.desCita);
+                        $("#" + idModalViewCita).modal('show');
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        /* */
+        function editar(id) {
+            $.ajax({
+                type: 'GET',
+                url: "citas/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $(`#u_doctor_cita option:contains('${response.doctor}')`).prop(
+                            "selected", true);
+                        $(`#u_paciente_cita option:contains('${response.paciente}')`)
+                            .prop("selected", true);
+                        $(`#u_estado_cita option:contains('${response.estado}')`).prop(
+                            "selected", true);
+                        $(`#u_tipo_cita option:contains('${response.tipo}')`).prop(
+                            "selected", true);
+                        $("#u_fecha_inicio_cita").val(response.fechaInicio);
+                        $("#u_hora_inicio_cita").val(response.horaInicio);
+                        $("#u_fecha_final_cita").val(response.fechaFinal);
+                        $("#u_hora_final_cita").val(response.horaFinal);
+                        $("#u_descripcion_cita").val(response.desCita);
+                        $('#btn-actualizar').attr('onclick',
+                            `actualizar("${response.codigoCita}")`);
+                        $("#" + idModalUpdateCita).modal('show');
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function actualizar(id) {
+            console.log(id)
+            $.ajax({
+                type: 'PUT',
+                url: "citas/" + id,
+                data: $('#' + idFormUpdateCita).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro actualizado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+
+                    if (response.statusCode != 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo actualizar el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        /* */
+        function eliminar(id) {
+            Swal.fire({
+                title: '¿Eliminar el registro?',
+                text: "¡No podrá revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "citas/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.statusCode == 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    icon: 'success',
+                                    title: 'Registro eliminado',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                $('#' + idTabla).DataTable().ajax.reload();
+                                return;
+                            }
+
+                            if (response.statusCode != 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 4000,
+                                    timerProgressBar: true,
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El registro no se pudo eliminar',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                            }
+                        }
+                    });
                 }
             })
-        });
+        }
+    </script>
+
+    <script>
+        function cerrarModal(id, form) {
+            Swal.fire({
+                title: '¿Está seguro/a?',
+                text: "¡Los cambios que no haya guardado se perderán!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, salir',
+                cancelButtonText: 'No',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#" + id).modal("hide");
+                    $('#' + form).trigger("reset");
+                }
+            })
+        }
     </script>
 @stop
