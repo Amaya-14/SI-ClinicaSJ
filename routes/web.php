@@ -63,8 +63,8 @@ Route::resource('historial', HistorialController::class);
 /* Módulo Almacen */
 Route::resource('medicamentos', MedicamentoController::class);
 Route::resource('materiales', MaterialController::class);
-Route::resource('inventario/medicamentos', InventarioMedicamentoController::class);
-Route::resource('inventario/materiales', InventarioMaterialController::class);
+//Route::resource('inventario/medicamentos', InventarioMedicamentoController::class);
+//sRoute::resource('inventario/materiales', InventarioMaterialController::class);
 
 /* Módulo Caja Chica */
 Route::resource('caja-chica/apertura-cierre', AperturaCierreController::class);
