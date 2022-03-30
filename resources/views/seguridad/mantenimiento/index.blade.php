@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Home')
+@section('title', 'Mantenimiento')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

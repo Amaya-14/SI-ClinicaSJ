@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 // Controladores Módulos
 use App\Http\Controllers\Persona\PacienteController;
@@ -49,7 +50,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 /* Módulo Personas*/
 Route::resource('pacientes', PacienteController::class);
 Route::resource('empleados', EmpleadoController::class);
-Route::get('perfil', function (){
+Route::get('perfil', function () {
     return view('persona.perfil');
 });
 
@@ -85,7 +86,26 @@ Route::get('mantenimiento', function () {
     return view('seguridad.mantenimiento.index');
 });
 
-Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
+Route::controller(MantenimientoPersonaController::class)->group(function () {
+    Route::get('/mantenimiento/personas', 'index')->name('mantenimiento.personas');
+
+    Route::get('/mantenimiento/load/telefonos', 'loadTelefonos')->name("load.telefonos");
+    Route::get('/mantenimiento/load/puestos', 'loadPuestos')->name("load.puestos");
+
+    Route::post('/mantenimiento/telefono', 'storeTelefono')->name('telefono.store');
+    Route::post('/mantenimiento/puesto', 'storePuesto')->name('puesto.store');
+
+    Route::get('/mantenimiento/telefono/{telefono}/edit', 'editTelefono')->name('telefono.edit');
+    Route::get('/mantenimiento/puesto/{puesto}/edit', 'editPuesto')->name('puesto.edit');
+
+    Route::put('/mantenimiento/telefono/{telefono}', 'updateTelefono')->name('telefono.update');
+    Route::put('/mantenimiento/puesto/{puesto}', 'updatePuesto')->name('puesto.update');
+
+    Route::delete('/mantenimiento/telefono/{telefono}', 'destroyTelefono')->name('telefono.destroy');
+    Route::delete('/mantenimiento/puesto/{puesto}', 'destroyPuesto')->name('puesto.destroy');
+});
+
+//Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
 Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
 Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
 Route::resource('mantenimiento/caja', MantenimientoCajaController::class);

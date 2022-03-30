@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Mantenimiento del módulo personas')
+@section('title', 'Mantenimiento módulo personas')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -26,195 +26,671 @@
             width: 100%;
         }
 
+        .btn-check:focus+.btn,
+        .btn:focus,
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
+        }
+
+        .col_center {
+            text-align: center;
+        }
+
     </style>
 @stop
 
 @section('content_header')
-    <section class="">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title m-0">Mantenimiento del módulo personas</h3>
-                <div class="card-tools m-0">
-                    <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                    <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
-                        title="información"></i>
-                </div>
-                <!-- card-tools -->
-            </div>
-            <!-- card-header -->
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-telefonos-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-telefonos" type="button" role="tab" aria-controls="pills-telefonos"
-                                aria-selected="true">Teléfonos</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-direcciones-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-direcciones" type="button" role="tab"
-                                aria-controls="pills-direcciones" aria-selected="false">Direcciones</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-cargos-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-cargos" type="button" role="tab" aria-controls="pills-cargos"
-                                aria-selected="false">Puesto de trabajo</button>
-                        </li>
-                    </ul>
-                    <div>
-                        <x-adminlte-button class="btn-sm bg-teal" label="Nuevo télefono" icon="fas fa-plus"
-                            data-toggle="modal" data-target="#createTelefono" />
-                        <x-adminlte-button class="btn-sm bg-teal" label="Nueva dirección" icon="fas fa-plus"
-                            data-toggle="modal" data-target="#createDireccion" />
-                        <x-adminlte-button class="btn-sm bg-teal" label="Nuevo puesto" icon="fas fa-plus"
-                            data-toggle="modal" data-target="#createPuestoTrabajo" />
-                    </div>
-                </div>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-telefonos" role="tabpanel"
-                        aria-labelledby="pills-telefonos-tab">
-                        @livewire('data-table.tabla-telefonos-personas')
-                    </div>
-                    <div class="tab-pane fade" id="pills-direcciones" role="tabpanel"
-                        aria-labelledby="pills-direcciones-tab">
-                        @livewire('data-table.tabla-direcciones-personas')
-                    </div>
-                    <div class="tab-pane fade" id="pills-cargos" role="tabpanel" aria-labelledby="pills-cargos-tab">
-                        @livewire('data-table.tabla-cargos-empleados')
-                    </div>
+    <x-simple-card>
+        @slot('titulo', 'Lista de pacientes')
+        @slot('idModalInstruccion', 'modalInstrucciones')
+        @slot('content')
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-telefonos-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-telefonos" type="button" role="tab" aria-controls="pills-telefonos"
+                            aria-selected="true">Teléfonos</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-cargos-tab" data-bs-toggle="pill" data-bs-target="#pills-cargos"
+                            type="button" role="tab" aria-controls="pills-cargos" aria-selected="false">Puestos de
+                            trabajo</button>
+                    </li>
+                </ul>
+                <div>
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo télefono" icon="fas fa-plus" data-bs-toggle="modal"
+                        data-bs-target="#createTelefono" />
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo puesto" icon="fas fa-plus" data-bs-toggle="modal"
+                        data-bs-target="#createPuesto" />
                 </div>
             </div>
-            <!-- card-body -->
-            <div class="card-footer d-flex justify-content-end">
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-telefonos" role="tabpanel"
+                    aria-labelledby="pills-telefonos-tab">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="tabla-telefonos" style="width: 100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Persona</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-cargos" role="tabpanel" aria-labelledby="pills-cargos-tab">
+                    <table class="table table-striped" id="tabla-cargos" style="width: 100%">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-            <!-- card-footer -->
-        </div>
-        <!-- card -->
-    </section>
-    <!--  -->
+        @endslot
+    </x-simple-card>
+
 @stop
 
 @section('content')
-    <x-adminlte-modal id="modalInstrucciones" title="Instrucciones" theme="info" icon="fas fa-info" v-centered scrollable>
-        <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
-            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
-        </section>
-        <!-- body modal -->
-        <x-slot name="footerSlot">
-            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
-            <!-- bottones modal -->
-        </x-slot>
-        <!-- footer modal -->
-    </x-adminlte-modal>
-    <!-- modal instrucciones -->
-
-    @livewire('modal.create.modal-telefono')
-    @livewire('modal.create.modal-direccion')
-    @livewire('modal.update.modal-telefono')
-    @livewire('modal.update.modal-direccion')
-    @livewire('modal.create.modal-puesto-trabajo')
-    @livewire('modal.update.modal-puesto-trabajo')
+    <x-modal.create.create-telefono />
+    <x-modal.update.update-telefono />
+    <x-modal.view.view-telefono />
+    <x-modal.create.create-puesto-trabajo />
+    <x-modal.update.update-puesto-trabajo />
+    <x-modal.view.view-puesto-trabajo />
 @stop
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        // Variables
-        let inputs = document.querySelectorAll(".input-request");
-        let btnEditar = document.querySelectorAll(".btn-editar");
-        let btnCancelar = document.querySelectorAll(".btn-cancelar");
-        let btnHidden = document.querySelectorAll(".btn-hidden");
-        let modal = document.querySelectorAll('.modal-update');
+        let idTablaTelefonos = 'tabla-telefonos';
+        let idTablaCargos = 'tabla-cargos';
 
-        // Funcionalidad de los button editar
-        btnEditar.forEach(element => {
-            element.addEventListener('click', function() {
-                if (this.id == 'editar-telefono') {
-                    inputs[0].removeAttribute('disabled');
-                    btnEditar[0].classList.add('d-none');
-                    btnHidden[0].classList.remove('d-none');
-                    btnHidden[1].classList.remove('d-none');
-                }
+        let idModalCreateTelefono = 'createTelefono';
+        let idModalUpdateTelefono = 'updateTelefono';
+        let idModalViewTelefono = 'viewTelefono';
+        let idFormCreateTelefono = 'crear_telefono';
+        let idFormUpdateTelefono = 'actualizar_telefono';
 
-                if (this.id == 'editar-direccion') {
-                    inputs[1].removeAttribute('disabled');
-                    btnEditar[1].classList.add('d-none');
-                    btnHidden[2].classList.remove('d-none');
-                    btnHidden[3].classList.remove('d-none');
-                }
+        let idModalCreatePuesto = 'createPuesto';
+        let idModalUpdatePuesto = 'updatePuesto';
+        let idModalViewPuesto = 'viewPuesto';
+        let idFormCreatePuesto = 'crear_puesto';
+        let idFormUpdatePuesto = 'actualizar_puesto';
+    </script>
 
-                if (this.id == 'editar-puesto') {
-                    inputs[2].removeAttribute('disabled');
-                    btnEditar[2].classList.add('d-none');
-                    btnHidden[4].classList.remove('d-none');
-                    btnHidden[5].classList.remove('d-none');
+    <script>
+        $('#' + idTablaTelefonos).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.telefonos') !!}',
+            columns: [{
+                    data: 'nombrePersona'
+                },
+                {
+                    data: 'numTelefono'
+                },
+                {
+                    data: 'tipoTelefono'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
                 }
-            });
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
         });
 
-        // Funcionalidad de los button cancelar
-        btnCancelar.forEach(element => {
-            element.addEventListener('click', function() {
-                Swal.fire({
-                    icon: 'question',
-                    title: '¿En realidad deas cancelar esta acción?',
-                    text: '¡Tus cambios se perderán!',
-                    confirmButtonText: 'Si, cancelar',
-                    showDenyButton: true,
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        if (this.id == 'cancelar-telefono') {
-                            inputs[0].setAttribute('disabled');
-                            btnEditar[0].classList.remove('d-none');
-                            btnHidden[0].classList.add('d-none');
-                            btnHidden[1].classList.add('d-none');
-                        }
+        $('#' + idTablaCargos).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.puestos') !!}',
+            columns: [{
+                    data: 'nombre'
+                },
+                {
+                    data: 'descripcion'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
+                }
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
+        });
+    </script>
 
-                        if (this.id == 'cancelar-direccion') {
-                            inputs[1].setAttribute('disabled');
-                            btnEditar[1].classList.remove('d-none');
-                            btnHidden[2].classList.add('d-none');
-                            btnHidden[3].classList.add('d-none');
-                        }
-
-                        if (this.id == 'cancelar-puesto') {
-                            inputs[2].setAttribute('disabled');
-                            btnEditar[2].classList.remove('d-none');
-                            btnHidden[4].classList.add('d-none');
-                            btnHidden[5].classList.add('d-none');
-                        }
+    <script>
+        $('#' + idFormCreateTelefono).submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/mantenimiento/telefono',
+                data: $('#' + idFormCreateTelefono).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 201) {
+                        $('#' + idTablaTelefonos).DataTable().ajax.reload();
+                        $("#" + idModalCreateTelefono).modal("hide");
+                        $('#' + idFormCreateTelefono).trigger("reset");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro creado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
                     }
-                })
+
+                    if (response.statusCode != 201) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo crear el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
             });
-        });
+        })
 
-        // Funcionalidad al cerrar un modal
-        modal.forEach(element => {
-            element.addEventListener('hidden.bs.modal', function(event) {
-                if (this.id == 'updateTelefono' && btnEditar[0].classList.contains('d-none')) {
-                    inputs[0].setAttribute('disabled');
-                    btnEditar[0].classList.remove('d-none');
-                    btnHidden[0].classList.add('d-none');
-                    btnHidden[1].classList.add('d-none');
+        $('#' + idFormCreatePuesto).submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('puesto.store') }}',
+                data: $('#' + idFormCreatePuesto).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 201) {
+                        $('#' + idTablaCargos).DataTable().ajax.reload();
+                        $("#" + idModalCreatePuesto).modal("hide");
+                        $('#' + idFormCreatePuesto).trigger("reset");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro creado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+
+                    if (response.statusCode != 201) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo crear el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        })
+    </script>
 
-                if (this.id == 'updateDireccion' && btnEditar[1].classList.contains('d-none')) {
-                    inputs[1].setAttribute('disabled');
-                    btnEditar[1].classList.remove('d-none');
-                    btnHidden[2].classList.add('d-none');
-                    btnHidden[3].classList.add('d-none');
+    <script>
+        function editarPuesto(id) {
+            $.ajax({
+                type: 'GET',
+                url: "/mantenimiento/puesto/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $('#u_nombre_puesto_trabajo').val(response.nombre);
+                        $('#u_descripcion_puesto_trabajo').val(response.descripcion);
+                        $('#btn-actualizar-puesto').attr('onclick', `actualizarPuesto("${response.cargo}")`);
+                        $("#" + idModalUpdatePuesto).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
 
-                if (this.id == 'updatePuestoTrabajo' && btnEditar[2].classList.contains('d-none')) {
-                    inputs[2].setAttribute('disabled');
-                    btnEditar[2].classList.remove('d-none');
-                    btnHidden[4].classList.add('d-none');
-                    btnHidden[5].classList.add('d-none');
+        function editarTelefono(id) {
+            $.ajax({
+                type: 'GET',
+                url: "/mantenimiento/telefono/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $('#u_persona').val(response.nombrePersona);
+                        $('#u_area_telefono_persona').val(response.numArea);
+                        $('#u_numero_telefono_persona').val(response.numTelefono);
+                        $(`#u_tipo_telefono option:contains('${response.tipoTelefono}')`).prop("selected",
+                            true);
+                        $('#u_descripcion_telefono').val(response.descripcionTelefono);
+                        $('#btn-actualizar-telefono').attr('onclick',
+                            `actualizarTelefono("${response.codTelefono}")`);
+                        $("#" + idModalUpdateTelefono).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function actualizarPuesto(id) {
+            $.ajax({
+                type: 'PUT',
+                url: "/mantenimiento/puesto/" + id,
+                data: $('#' + idFormUpdatePuesto).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 200) {
+                        $('#' + idTablaCargos).DataTable().ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro actualizado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $("#" + idModalUpdatePuesto).modal("hide");
+                        $('#' + idTablaCargos).DataTable().ajax.reload();
+                        //editar(idPersona);
+                    }
+
+                    if (response.statusCode != 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo actualizar el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+
+        function actualizarTelefono(id) {
+            $.ajax({
+                type: 'PUT',
+                url: "/mantenimiento/telefono/" + id,
+                data: $('#' + idFormUpdateTelefono).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 200) {
+                        $('#' + idTablaCargos).DataTable().ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro actualizado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $("#" + idModalUpdateTelefono).modal("hide");
+                        $('#' + idTablaTelefonos).DataTable().ajax.reload();
+                        //editar(idPersona);
+                    }
+
+                    if (response.statusCode != 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo actualizar el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function eliminarPuesto(id) {
+            Swal.fire({
+                title: '¿Eliminar el registro?',
+                text: "¡No podrá revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "/mantenimiento/puesto/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.statusCode == 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    icon: 'success',
+                                    title: 'Registro eliminado',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                $('#' + idTablaCargos).DataTable().ajax.reload();
+                                return;
+                            }
+
+                            if (response.statusCode != 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 4000,
+                                    timerProgressBar: true,
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El registro no se pudo eliminar',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                            }
+                        }
+                    });
                 }
             })
-        });
+        }
+
+        function eliminarTelefono(id) {
+            Swal.fire({
+                title: '¿Eliminar el registro?',
+                text: "¡No podrá revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "/mantenimiento/telefono/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.statusCode == 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    icon: 'success',
+                                    title: 'Registro eliminado',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                $('#' + idTablaTelefonos).DataTable().ajax.reload();
+                                return;
+                            }
+
+                            if (response.statusCode != 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 4000,
+                                    timerProgressBar: true,
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El registro no se pudo eliminar',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function verPuesto(id) {
+            $.ajax({
+                type: 'GET',
+                url: "/mantenimiento/puesto/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $('#v_nombre_puesto_trabajo').val(response.nombre);
+                        $('#v_descripcion_puesto_trabajo').val(response.descripcion);
+                        $("#" + idModalViewPuesto).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+
+        function verTelefono(id) {
+            $.ajax({
+                type: 'GET',
+                url: "/mantenimiento/telefono/" + id + "/edit",
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        $('#v_persona').val(response.nombrePersona);
+                        $('#v_area_telefono_persona').val(response.numArea);
+                        $('#v_numero_telefono_persona').val(response.numTelefono);
+                        $('#v_tipo_telefono').val(response.tipoTelefono);
+                        $('#v_descripcion_telefono').val(response.descripcionTelefono);
+                        $("#" + idModalViewTelefono).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function cerrarModal(str, id, form, btn = null) {
+            Swal.fire({
+                title: '¿Está seguro/a?',
+                text: `¡${str} que no haya guardado se perderán!`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, salir',
+                cancelButtonText: 'No',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#" + id).modal("hide");
+                    $('#' + form).trigger("reset");
+                    if (btn) $("#" + btn).removeAttr("onclick");
+                }
+            })
+        }
     </script>
 @stop
