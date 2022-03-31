@@ -128,7 +128,7 @@
                             <h2 class="text-left">
                                 <i class="fas fa-fw fa-warehouse f-right"></i>
                                 <span>
-                                    <a class="custom-a" href="{{ url('mantenimiento/almacen') }}">Almacén</a>
+                                    <a class="custom-a" href="{{ route('mantenimiento.almacen') }}">Almacén</a>
                                 </span>
                             </h2>
                         </div>

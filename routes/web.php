@@ -105,10 +105,26 @@ Route::controller(MantenimientoPersonaController::class)->group(function () {
     Route::delete('/mantenimiento/puesto/{puesto}', 'destroyPuesto')->name('puesto.destroy');
 });
 
+Route::controller(MantenimientoAlmacenController::class)->group(function () {
+    Route::get('/mantenimiento/almacen', 'index')->name('mantenimiento.almacen');
+
+    Route::get('/mantenimiento/load/tipos/medicamentos', 'loadTiposMedicamentos')->name('load.tipos.medicamentos');
+    Route::get('/mantenimiento/load/unidades/presentacion', 'loadUnidsPres')->name('load.unidades.presentacion');
+    Route::get('/mantenimiento/load/tipos/materiales', 'loadTiposMateriales')->name('load.tipos.materiales');
+
+    Route::post('/mantenimiento/almacen/registro', 'storeRegistro')->name('mantenimiento.almacen.store');
+
+    Route::get('/mantenimiento/almacen/registro/{id}/edit/{str}', 'editRegistro')->name('mantenimiento.almacen.edit');
+
+    Route::put('/mantenimiento/almacen/registro/{id}', 'updateRegistro')->name('mantenimiento.almacen.update');
+
+    Route::delete('/mantenimiento/almacen/registro/{id}/{str}', 'destroyRegistro')->name('mantenimiento.almacen.destroy');
+});
+
 //Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
-Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
-Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
-Route::resource('mantenimiento/caja', MantenimientoCajaController::class);
-Route::resource('usuarios', UsuariosController::class);
-Route::resource('seguridad/roles-permisos', RolPermisoController::class);
+//Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
+//Route::resource('mantenimiento/cita', MantenimientoCitaController::class);
+//Route::resource('mantenimiento/caja', MantenimientoCajaController::class);
+//Route::resource('usuarios', UsuariosController::class);
+//Route::resource('seguridad/roles-permisos', RolPermisoController::class);
 Route::resource('bitacora', BitacoraController::class);

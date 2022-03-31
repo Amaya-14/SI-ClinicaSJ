@@ -26,22 +26,26 @@
             width: 100%;
         }
 
+        .btn-check:focus+.btn,
+        .btn:focus,
+        .form-select:focus,
+        .form-control:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
+        }
+
+        .col_center {
+            text-align: center;
+        }
+
     </style>
 @stop
 
 @section('content_header')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title m-0">Mantenimiento del módulo almacén</h3>
-            <div class="card-tools m-0">
-                <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
-                    title="información"></i>
-            </div>
-            <!-- card-tools -->
-        </div>
-        <!-- card-header -->
-        <div class="card-body">
+    <x-simple-card>
+        @slot('titulo', 'Mantenimiento del módulo almacén')
+        @slot('idModalInstruccion', 'modalInstrucciones')
+        @slot('content')
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <ul class="nav nav-pills d-inline-flex" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -62,153 +66,400 @@
                     </li>
                 </ul>
                 <div>
-                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-toggle="modal"
-                        data-target="#createRegistroAlmacen" />
+                    <x-adminlte-button class="btn-sm bg-teal" label="Nuevo registro" icon="fas fa-plus" data-bs-toggle="modal"
+                        data-bs-target="#createRegistroAlmacen" />
                 </div>
             </div>
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-tipo-medicamento" role="tabpanel"
                     aria-labelledby="pills-tipo-medicamento-tab">
-                    @livewire('data-table.tabla-tipo-medicamentos')
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="tabla-tipos-medicamentos" style="width: 100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="pills-unidades-presentacion" role="tabpanel"
                     aria-labelledby="pills-unidades-presentacion-tab">
-                    @livewire('data-table.tabla-presentacion-medicamento')
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="tabla-unidades-presentacion" style="width: 100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="pills-tipo-materiales" role="tabpanel"
                     aria-labelledby="pills-tipo-materiales-tab">
-                    @livewire('data-table.tabla-tipo-materiales')
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="tabla-tipos-materiales" style="width: 100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- card-body -->
-        <div class="card-footer d-flex justify-content-end">
-        </div>
-        <!-- card-footer -->
-    </div>
-    <!-- card -->
+        @endslot
+    </x-simple-card>
 @stop
 
 @section('content')
-    <x-adminlte-modal id="modalInstrucciones" title="Instrucciones" theme="info" icon="fas fa-info" v-centered scrollable>
-        <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
-            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
-        </section>
-        <!-- body modal -->
-        <x-slot name="footerSlot">
-            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
-            <!-- bottones modal -->
-        </x-slot>
-        <!-- footer modal -->
-    </x-adminlte-modal>
-    <!-- modal instrucciones -->
-
-    @livewire('modal.create.modal-mantenimiento-almacen')
-    @livewire('modal.update.modal-tipo-medicamento')
-    @livewire('modal.update.modal-presentacion-medicamento')
-    @livewire('modal.update.modal-tipo-material')
+    <x-modal.create.create-mantenimiento-almacen />
+    <x-modal.update.update-mantenimiento-almacen />
 @stop
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        // Variables
-        let inputs = document.querySelectorAll(".input-request");
-        let btnEditar = document.querySelectorAll(".btn-editar");
-        let btnCancelar = document.querySelectorAll(".btn-cancelar");
-        let btnHidden = document.querySelectorAll(".btn-hidden");
-        let modal = document.querySelectorAll('.modal-update');
-        
-        // Funcionalidad de los button editar
-        btnEditar.forEach(element => {
-            element.addEventListener('click', function() {
-                if (this.id == 'editar-1') {
-                    inputs[0].removeAttribute('disabled');
-                    btnEditar[0].classList.add('d-none');
-                    btnHidden[0].classList.remove('d-none');
-                    btnHidden[1].classList.remove('d-none');
-                }
+        let idTablaTiposMedicamentos = 'tabla-tipos-medicamentos';
+        let idTablaUnidadesPresentacion = 'tabla-unidades-presentacion';
+        let idTablaTiposMateriales = 'tabla-tipos-materiales';
 
-                if (this.id == 'editar-2') {
-                    inputs[1].removeAttribute('disabled');
-                    btnEditar[1].classList.add('d-none');
-                    btnHidden[2].classList.remove('d-none');
-                    btnHidden[3].classList.remove('d-none');
-                }
+        let idModalCreateRegistroAlmacen = 'createRegistroAlmacen';
+        let idModalUpdateRegistroAlmacen = 'updateRegistroAlmacen';
+        let idFormCreateRegistroAlmacen = 'crear_registro_almacen';
+        let idFormUpdateRegistroAlmacen = 'update_registro_almacen';
+    </script>
 
-                if (this.id == 'editar-3') {
-                    inputs[2].removeAttribute('disabled');
-                    btnEditar[2].classList.add('d-none');
-                    btnHidden[4].classList.remove('d-none');
-                    btnHidden[5].classList.remove('d-none');
+    <script>
+        $('#' + idTablaTiposMedicamentos).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.tipos.medicamentos') !!}',
+            columns: [{
+                    data: 'nombre'
+                },
+                {
+                    data: 'descripcion'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
                 }
-            });
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
         });
 
-        // Funcionalidad de los button cancelar
-        btnCancelar.forEach(element => {
-            element.addEventListener('click', function() {
-                Swal.fire({
-                    icon: 'question',
-                    title: '¿En realidad deas cancelar esta acción?',
-                    text: '¡Tus cambios se perderán!',
-                    confirmButtonText: 'Si, cancelar',
-                    showDenyButton: true,
-                    denyButtonText: `No`,
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        if (this.id == 'cancelar-1') {
-                            inputs[0].setAttribute('disabled');
-                            btnEditar[0].classList.remove('d-none');
-                            btnHidden[0].classList.add('d-none');
-                            btnHidden[1].classList.add('d-none');
-                        }
+        $('#' + idTablaUnidadesPresentacion).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.unidades.presentacion') !!}',
+            columns: [{
+                    data: 'nombre'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
+                }
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
+        });
 
-                        if (this.id == 'cancelar-2') {
-                            inputs[1].setAttribute('disabled');
-                            btnEditar[1].classList.remove('d-none');
-                            btnHidden[2].classList.add('d-none');
-                            btnHidden[3].classList.add('d-none');
-                        }
+        $('#' + idTablaTiposMateriales).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.tipos.materiales') !!}',
+            columns: [{
+                    data: 'nombre'
+                },
+                {
+                    data: 'descripcion'
+                },
+                {
+                    data: 'Opciones',
+                    orderable: false,
+                }
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
+        });
+    </script>
 
-                        if (this.id == 'cancelar-3') {
-                            inputs[2].setAttribute('disabled');
-                            btnEditar[2].classList.remove('d-none');
-                            btnHidden[4].classList.add('d-none');
-                            btnHidden[5].classList.add('d-none');
-                        }
+    <script>
+        $('#' + idFormCreateRegistroAlmacen).submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/mantenimiento/almacen/registro',
+                data: $('#' + idFormCreateRegistroAlmacen).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 201) {
+                        $('#' + idTablaTiposMedicamentos).DataTable().ajax.reload();
+                        $('#' + idTablaUnidadesPresentacion).DataTable().ajax.reload();
+                        $('#' + idTablaTiposMateriales).DataTable().ajax.reload();
+
+                        $("#" + idModalCreateRegistroAlmacen).modal("hide");
+                        $('#' + idFormCreateRegistroAlmacen).trigger("reset");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro creado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
                     }
-                })
+
+                    if (response.statusCode != 201) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo crear el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
+                }
             });
-        });
+        })
+    </script>
 
-        // Funcionalidad al cerrar un modal
-        modal.forEach(element => {
-            element.addEventListener('hidden.bs.modal', function(event) {
-                if (this.id == 'updateTipoMedicamento' && btnEditar[0].classList.contains('d-none')) {
-                    inputs[0].setAttribute('disabled');
-                    btnEditar[0].classList.remove('d-none');
-                    btnHidden[0].classList.add('d-none');
-                    btnHidden[1].classList.add('d-none');
+    <script>
+        function editar(id, str) {
+            $.ajax({
+                type: 'GET',
+                url: "/mantenimiento/almacen/registro/" + id + "/edit/" + str,
+                success: function(response) {
+                    console.log(response)
+                    if (response) {
+                        data = response[0]
+                        /*$(`#u_tipo_registro option:contains('${response.tipoTelefono}')`).prop("selected",
+                        true);*/
+                        $('#u_tipo_registro').val(response[1]);
+                        $('#u_nombre_registro').val(data.nombre);
+                        if (response[1] != 'UniPres') $('#u_descripcion_registro').val(data.descripcion);
+                        if (response[1] == 'UniPres') {
+                            $('#u_descripcion_registro').val("---");
+                            $('#input-descripcion').addClass('d-none');
+                            //$('#input-descripcion').attr('disabled');
+                        }
+
+                        $('#btn-actualizar').attr('onclick', `actualizar("${data.codigo}", "${response[2]}")`);
+                        $("#" + idModalUpdateRegistroAlmacen).modal("show");
+                    }
+
+                    if (!response) {
+                        console.log(response);
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo obtener la información del registro',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
+    </script>
 
-                if (this.id == 'updatePresentacionMedicamento' && btnEditar[1].classList.contains(
-                    'd-none')) {
-                    inputs[1].setAttribute('disabled');
-                    btnEditar[1].classList.remove('d-none');
-                    btnHidden[2].classList.add('d-none');
-                    btnHidden[3].classList.add('d-none');
+    <script>
+        function actualizar(id) {
+            $.ajax({
+                type: 'PUT',
+                url: "/mantenimiento/almacen/registro/" + id,
+                data: $('#' + idFormUpdateRegistroAlmacen).serialize(),
+                success: function(response) {
+                    console.log(response)
+                    if (response.statusCode == 200) {
+                        $('#' + idTablaTiposMedicamentos).DataTable().ajax.reload();
+                        $('#' + idTablaUnidadesPresentacion).DataTable().ajax.reload();
+                        $('#' + idTablaTiposMateriales).DataTable().ajax.reload();
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'success',
+                            title: 'Registro actualizado exitosamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal
+                                    .stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        $("#" + idModalUpdateRegistroAlmacen).modal("hide");
+                        //editar(idPersona);
+                    }
+
+                    if (response.statusCode != 200) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No se pudo actualizar el registro correctamente',
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                    }
                 }
+            });
+        }
+    </script>
 
-                if (this.id == 'updateTipoMaterial' && btnEditar[2].classList.contains('d-none')) {
-                    inputs[2].setAttribute('disabled');
-                    btnEditar[2].classList.remove('d-none');
-                    btnHidden[4].classList.add('d-none');
-                    btnHidden[5].classList.add('d-none');
+    <script>
+        function eliminar(id, str) {
+            console.log(id)
+            console.log(str)
+            Swal.fire({
+                title: '¿Eliminar el registro?',
+                text: "¡No podrá revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "/mantenimiento/almacen/registro/" + id + "/" + str,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            console.log(response)
+                            if (response.statusCode == 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    icon: 'success',
+                                    title: 'Registro eliminado',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                $('#' + idTablaTiposMedicamentos).DataTable().ajax.reload();
+                                $('#' + idTablaUnidadesPresentacion).DataTable().ajax.reload();
+                                $('#' + idTablaTiposMateriales).DataTable().ajax.reload();
+                                return;
+                            }
+
+                            if (response.statusCode != 200) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 4000,
+                                    timerProgressBar: true,
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El registro no se pudo eliminar',
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                            }
+                        }
+                    });
                 }
             })
-        });
+
+        }
+    </script>
+
+    <script>
+        function cerrarModal(str, id, form, btn = null) {
+            Swal.fire({
+                title: '¿Está seguro/a?',
+                text: `¡${str} que no haya guardado se perderán!`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, salir',
+                cancelButtonText: 'No',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                stopKeydownPropagation: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#" + id).modal("hide");
+                    $('#' + form).trigger("reset");
+                    if (btn) $("#" + btn).removeAttr("onclick");
+                    //$('#input-descripcion').removeAttr('disabled');
+                    $('#input-descripcion').removeClass('d-none');
+                }
+            })
+        }
     </script>
 @stop
