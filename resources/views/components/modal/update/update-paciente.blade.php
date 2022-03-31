@@ -5,7 +5,7 @@
             <div class="modal-header bg-yellow">
                 <h4 class="modal-title" id="actualizarPaciente">
                     <i class="fas fa-edit mr-2"></i>
-                    Paciente
+                    Actualizar Paciente
                 </h4>
                 <button type="button" class="btn-close" aria-label="Cerrar" title="Cerrar"
                     onclick="cerrarModal('updatePaciente','actualizar_paciente')"></button>

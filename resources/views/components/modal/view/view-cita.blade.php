@@ -5,7 +5,7 @@
             <div class="modal-header bg-primary">
                 <h4 class="modal-title" id="verCita">
                     <i class="fas fa-eye mr-2"></i>
-                    Nuevo Cita
+                    Cita
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"
                     title="Cerrar"></button>

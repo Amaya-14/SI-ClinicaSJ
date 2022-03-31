@@ -5,7 +5,7 @@
             <div class="modal-header bg-yellow">
                 <h4 class="modal-title" id="actualizarRegistro">
                     <i class="fas fa-edit mr-2"></i>
-                    Nuevo Registro
+                    Actualizar Registro
                 </h4>
                 <button type="button" class="btn-close" aria-label="Cerrar" title="Cerrar"
                     onclick="cerrarModal('updateRegistroAlmacen','update_registro_almacen','btn-actualizar')"></button>

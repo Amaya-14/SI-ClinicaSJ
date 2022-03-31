@@ -5,7 +5,7 @@
             <div class="modal-header bg-yellow">
                 <h4 class="modal-title" id="actualizarCita">
                     <i class="fas fa-edit mr-2"></i>
-                    Nuevo Cita
+                    Actualizar Cita
                 </h4>
                 <button type="button" class="btn-close" aria-label="Cerrar" title="Cerrar"
                     onclick="cerrarModal('updateCita','actualizar_cita')"></button>
