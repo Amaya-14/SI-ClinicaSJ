@@ -26,7 +26,7 @@ use App\Http\Controllers\Seguridad\MantenimientoCitaController;
 use App\Http\Controllers\Seguridad\MantenimientoAlmacenController;
 use App\Http\Controllers\Seguridad\UsuariosController;
 use App\Http\Controllers\Seguridad\MantenimientoCajaController;
-
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +86,7 @@ Route::get('mantenimiento', function () {
     return view('seguridad.mantenimiento.index');
 });
 
+//
 Route::controller(MantenimientoPersonaController::class)->group(function () {
     Route::get('/mantenimiento/personas', 'index')->name('mantenimiento.personas');
 
@@ -105,6 +106,7 @@ Route::controller(MantenimientoPersonaController::class)->group(function () {
     Route::delete('/mantenimiento/puesto/{puesto}', 'destroyPuesto')->name('puesto.destroy');
 });
 
+//
 Route::controller(MantenimientoAlmacenController::class)->group(function () {
     Route::get('/mantenimiento/almacen', 'index')->name('mantenimiento.almacen');
 
@@ -119,6 +121,30 @@ Route::controller(MantenimientoAlmacenController::class)->group(function () {
     Route::put('/mantenimiento/almacen/registro/{id}', 'updateRegistro')->name('mantenimiento.almacen.update');
 
     Route::delete('/mantenimiento/almacen/registro/{id}/{str}', 'destroyRegistro')->name('mantenimiento.almacen.destroy');
+});
+
+
+//
+Route::controller(RolPermisoController::class)->group(function () {
+    Route::get('/seguridad/roles-permisos', 'index')->name('seguridad.permisos');
+
+    Route::get('/seguridad/load/roles', 'loadRoles')->name('load.roles');
+    Route::get('/seguridad/load/permisos', 'loadPermisos')->name('load.permisos');
+    Route::get('/seguridad/load/objetos', 'loadObjetos')->name('load.objetos');
+
+    Route::post('/seguridad/rol', 'storeRol')->name('rol.post');
+    Route::post('/seguridad/objeto', 'storeObjeto')->name('objeto.post');
+
+    Route::get('/seguridad/rol/{id}/edit', 'editRol')->name('rol.edit');
+    Route::get('/seguridad/objeto/{id}/edit', 'editObjeto')->name('objeto.edit');
+    Route::get('/seguridad/permiso/{rol}/{obj}/edit', 'editPermiso')->name('permiso.edit');
+
+    Route::put('/seguridad/rol/{id}', 'updateRol')->name('rol.update');
+    Route::put('/seguridad/objeto/{id}', 'updateObjeto')->name('objeto.update');
+    Route::put('/seguridad/permiso/{rol}/{obj}', 'updatePermiso')->name('permiso.update');
+
+    Route::delete('/seguridad/rol/{id}', 'destroyRol')->name('rol.destroy');
+    Route::delete('/seguridad/objeto/{id}', 'destroyObjeto')->name('objeto.destroy');
 });
 
 //Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);

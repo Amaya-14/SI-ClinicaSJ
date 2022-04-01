@@ -14,19 +14,12 @@
                 <form class="grid--responsive" id="crear_objeto">
                     {!! csrf_field() !!}
                     <!-- nombre del objeto -->
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <label class="input-group-text" for="c_nombre_objeto">Nombre<span
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="c_nombre_objeto" id="c_nombre_objeto"
                             aria-label="Nombre del objeto" aria-describedby="input_c_nombre_objeto"
                             placeholder="Ingrese el nombre del objeto" required>
-                    </div>
-                    <!-- descripción del objeto -->
-                    <div class="input-group">
-                        <label class="input-group-text" for="c_descripcion_objeto">Descripción</label>
-                        <textarea class="form-control" name="c_descripcion_objeto" id="c_descripcion_objeto" aria-label="Descripción del rol"
-                            aria-describedby="input_c_descripcion_objeto"
-                            placeholder="Descripción(Opcional)"></textarea>
                     </div>
                 </form>
             </div>

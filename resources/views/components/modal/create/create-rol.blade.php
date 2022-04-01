@@ -14,28 +14,12 @@
                 <form class="grid--responsive" id="crear_rol">
                     {!! csrf_field() !!}
                     <!-- nombre del rol -->
-                    <div class="input-group mb-3">
+                    <div class="input-group">
                         <label class="input-group-text" for="c_nombre_rol">Nombre<span
                                 class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="c_nombre_rol" id="c_nombre_rol"
                             aria-label="Nombre del rol" aria-describedby="input_c_nombre_rol"
                             placeholder="Ingrese el nombre del rol" required>
-                    </div>
-                    <!-- estado del rol -->
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="c_estado_rol">Estado</label>
-                        <select class="form-select" name="c_estado_rol" id="c_estado_rol" aria-label="Estado del rol"
-                            aria-describedby="input_c_estado_rol" required>
-                            <option selected disabled value="">Seleccione...</option>
-                            <option value="A">ACTIVO</option>
-                            <option value="I">INACTIVO</option>
-                        </select>
-                    </div>
-                    <!-- descripción del rol -->
-                    <div class="input-group">
-                        <label class="input-group-text" for="c_descripcion_rol">Descripción</label>
-                        <textarea class="form-control" name="c_descripcion_rol" id="c_descripcion_rol" aria-label="Descripción del rol"
-                            aria-describedby="input_c_descripcion_rol" placeholder="Descripción(Opcional)"></textarea>
                     </div>
                 </form>
             </div>
