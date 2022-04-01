@@ -147,6 +147,13 @@ Route::controller(RolPermisoController::class)->group(function () {
     Route::delete('/seguridad/objeto/{id}', 'destroyObjeto')->name('objeto.destroy');
 });
 
+//
+Route::controller(BitacoraController::class)->group(function (){
+    Route::get('/seguridad/bitacora', 'index')->name('bitacora.index');
+
+    Route::get('/seguridad/load/bitacora', 'loadBitacora')->name('load.bitacora');
+});
+
 //Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
 //Route::resource('mantenimiento/almacen', MantenimientoAlmacenController::class);
 //Route::resource('mantenimiento/cita', MantenimientoCitaController::class);

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Seguridad;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class BitacoraController extends Controller
 {
@@ -15,6 +20,18 @@ class BitacoraController extends Controller
     public function index()
     {
         return view('seguridad.bitacora');
+    }
+
+    /**
+     * 
+     */
+    public function loadBitacora()
+    {
+        $API = Config::get('constants.API');
+        $response = Http::get($API . '/mostrar/bitacora')->object();
+        $data = $response[0];
+        foreach ($data as $key => $value) $value->fecha = date("d/m/Y H:i:s", strtotime($value->fecha));
+        return Datatables::of($data)->make(true);
     }
 
     /**

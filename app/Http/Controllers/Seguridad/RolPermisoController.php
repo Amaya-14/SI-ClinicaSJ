@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Config;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
-use Laravel\Ui\Presets\React;
 
 class RolPermisoController extends Controller
 {

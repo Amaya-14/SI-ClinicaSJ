@@ -22,50 +22,73 @@
             box-shadow: 0 0 0 0.1rem rgb(26 108 229 / 40%);
         }
 
+        .col_center {
+            text-align: center;
+        }
+
     </style>
 @stop
 
 @section('content_header')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title m-0">Bitácora del sistema</h3>
-            <div class="card-tools m-0">
-                <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
-                    title="información"></i>
+    <x-simple-card>
+        @slot('titulo', 'Bitácora')
+        @slot('idModalInstruccion', 'modalInstrucciones')
+        @slot('content')
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabla-bitacora" style="width: 100%">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Objeto</th>
+                            <th scope="col">Acción</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Descripción</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <!-- card-tools -->
-        </div>
-        <!-- card-header -->
-        <div class="card-body">
-            @livewire('data-table.tabla-bitacora')
-        </div>
-        <!-- card-body -->
-        <div class="card-footer d-flex justify-content-end">
-        </div>
-        <!-- card-footer -->
-    </div>
-    <!-- card -->
+        @endslot
+    </x-simple-card>
 @stop
 
 @section('content')
-    <x-adminlte-modal id="modalInstrucciones" title="Instrucciones" theme="info" icon="fas fa-info" v-centered scrollable>
-        <section>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio non vitae facere velit sequi ducimus officia odit
-            repellat voluptas enim! Suscipit perspiciatis dolorum sequi nesciunt maxime labore, fugit consequatur natus?
-        </section>
-        <!-- body modal -->
-        <x-slot name="footerSlot">
-            <x-adminlte-button theme="danger" label="Cerrar" data-dismiss="modal" />
-            <!-- bottones modal -->
-        </x-slot>
-        <!-- footer modal -->
-    </x-adminlte-modal>
-    <!-- modal instrucciones -->
 
-    @livewire('modal.select.modal-bitacora')
 @stop
 
 @section('js')
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        let idTablaBitacora = 'tabla-bitacora';
+    </script>
+
+    <script>
+        $('#' + idTablaBitacora).DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('load.bitacora') !!}',
+            columns: [{
+                    data: 'usuario'
+                },
+                {
+                    data: 'objeto'
+                },
+                {
+                    data: 'accion'
+                },
+                {
+                    data: 'fecha'
+                },
+                {
+                    data: 'descripcion'
+                },
+            ],
+            "columnDefs": [{
+                className: "col_center",
+                "targets": "_all"
+            }, ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            }
+        });
+    </script>
 @stop
