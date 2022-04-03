@@ -51,7 +51,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-tipo-medicamento-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-tipo-medicamento" type="button" role="tab"
-                            aria-controls="pills-tipo-medicamento" aria-selected="true">Tipos de médicamentos</button>
+                            aria-controls="pills-tipo-medicamento" aria-selected="true">Tipos de medicamentos</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-unidades-presentacion-tab" data-bs-toggle="pill"

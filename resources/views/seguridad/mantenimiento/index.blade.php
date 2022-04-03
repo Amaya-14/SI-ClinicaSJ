@@ -71,8 +71,8 @@
             <h3 class="card-title m-0">Mantenimiento</h3>
             <div class="card-tools m-0">
                 <!-- ¡Aquí se pueden colocar botones, etiquetas y muchas otras cosas! -->
-                <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
-                    title="información"></i>
+                {{-- <i class="fas fa-info-circle fs-5 btn__info" data-toggle="modal" data-target="#modalInstrucciones"
+                    title="información"></i> --}}
             </div>
             <!-- card-tools -->
         </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <!-- -->
-                <div class="col-md-4 col-xl-4">
+                {{-- <div class="col-md-4 col-xl-4">
                     <div class="custom-card bg-c-green order-card" id="jornada-laboral">
                         <div class="card-block">
                             <h6 class="m-b-20">Módulo</h6>
@@ -105,9 +105,9 @@
                             </h2>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- -->
-                <div class="col-md-4 col-xl-4">
+                {{-- <div class="col-md-4 col-xl-4">
                     <div class="custom-card bg-c-yellow order-card" id="citas">
                         <div class="card-block">
                             <h6 class="m-b-20">Módulo</h6>
@@ -119,7 +119,7 @@
                             </h2>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- -->
                 <div class="col-md-4 col-xl-4">
                     <div class="custom-card bg-c-pink order-card" id="almacen">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <!-- -->
-                <div class="col-md-4 col-xl-4">
+                {{-- <div class="col-md-4 col-xl-4">
                     <div class="custom-card bg-c-blue order-card" id="caja">
                         <div class="card-block">
                             <h6 class="m-b-20">Módulo</h6>
@@ -147,7 +147,7 @@
                             </h2>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- card-body -->

@@ -14,6 +14,16 @@ use Illuminate\Contracts\Encryption\DecryptException;
 class PacienteController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Muestra un listado del recurso.
      *
      * @return \Illuminate\Http\Response

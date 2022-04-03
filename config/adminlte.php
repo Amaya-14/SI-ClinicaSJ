@@ -254,11 +254,11 @@ return [
                 ],
             ],
         ],
-        [
-            'text' => 'Jornada Laboral',
-            'icon' => 'fas fa-fw fa-user-clock',
-            'url'  => 'jornada-laboral',
-        ],
+        // [
+        //     'text' => 'Jornada Laboral',
+        //     'icon' => 'fas fa-fw fa-user-clock',
+        //     'url'  => 'jornada-laboral',
+        // ],
         [
             'text'    => 'Control de Citas',
             'icon'    => 'fas fa-fw fa-calendar-alt',
@@ -284,66 +284,66 @@ return [
                     'icon' => 'fas fa-fw fa-capsules',
                     'url'  => 'medicamentos',
                 ],
-                [
-                    'text' => 'Inventario Médicamentos',
-                    'icon' => 'fas fa-fw fa-box',
-                    'url'  => 'inventario/medicamentos',
-                ],
+                // [
+                //     'text' => 'Inventario Medicamentos',
+                //     'icon' => 'fas fa-fw fa-box',
+                //     'url'  => 'inventario/medicamentos',
+                // ],
                 [
                     'text' => 'Materiales',
                     'icon' => 'fas fa-fw fa-syringe',
                     'url'  => 'materiales',
                 ],
-                [
-                    'text' => 'Inventario Materiales',
-                    'icon' => 'fas fa-fw fa-box-open',
-                    'url'  => 'inventario/materiales',
-                ],
+                // [
+                //     'text' => 'Inventario Materiales',
+                //     'icon' => 'fas fa-fw fa-box-open',
+                //     'url'  => 'inventario/materiales',
+                // ],
             ],
         ],
-        [
-            'text' => 'Caja chica',
-            'icon' => 'fas fa-fw fa-coins',
-            'submenu' => [
-                [
-                    'text' => 'Aperturas y Cierres',
-                    'icon' => 'fas fa-fw fa-money-bill-alt',
-                    'url'  => 'caja-chica/apertura-cierre',
-                ],
-                [
-                    'text' => 'Movimientos',
-                    'icon' => 'fas fa-fw fa-hand-holding-usd',
-                    'url'  => 'caja-chica/movimientos',
-                ],
-                [
-                    'text' => 'Caja Registradora',
-                    'icon' => 'fas fa-fw fa-cash-register',
-                    'url'  => 'caja-chica/caja-registradora',
-                ],
-            ],
-        ],
-        [
-            'text' => 'Generar Reporte',
-            'icon' => 'fas fa-fw fa-file-alt',
-            'url'  => 'reportes',
-        ],
-        ['header' => 'Seguridad'],
-        [
-            'text'    => 'Configuración',
-            'icon'    => 'fas fa-fw fa-cogs',
-            'submenu' => [
-                [
-                    'text' => 'Sistema',
-                    'icon' => 'fas fa-fw fa-desktop',
-                    'url'  => 'configuracion/sistema',
-                ],
-                [
-                    'text' => 'Base de Datos',
-                    'icon' => 'fas fa-fw fa-database',
-                    'url'  => 'configuracion/db',
-                ],
-            ],
-        ],
+        // [
+        //     'text' => 'Caja chica',
+        //     'icon' => 'fas fa-fw fa-coins',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Aperturas y Cierres',
+        //             'icon' => 'fas fa-fw fa-money-bill-alt',
+        //             'url'  => 'caja-chica/apertura-cierre',
+        //         ],
+        //         [
+        //             'text' => 'Movimientos',
+        //             'icon' => 'fas fa-fw fa-hand-holding-usd',
+        //             'url'  => 'caja-chica/movimientos',
+        //         ],
+        //         [
+        //             'text' => 'Caja Registradora',
+        //             'icon' => 'fas fa-fw fa-cash-register',
+        //             'url'  => 'caja-chica/caja-registradora',
+        //         ],
+        //     ],
+        // ],
+        // [
+        //     'text' => 'Generar Reporte',
+        //     'icon' => 'fas fa-fw fa-file-alt',
+        //     'url'  => 'reportes',
+        // ],
+        // ['header' => 'Seguridad'],
+        // [
+        //     'text'    => 'Configuración',
+        //     'icon'    => 'fas fa-fw fa-cogs',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Sistema',
+        //             'icon' => 'fas fa-fw fa-desktop',
+        //             'url'  => 'configuracion/sistema',
+        //         ],
+        //         [
+        //             'text' => 'Base de Datos',
+        //             'icon' => 'fas fa-fw fa-database',
+        //             'url'  => 'configuracion/db',
+        //         ],
+        //     ],
+        // ],
         [
             'text'    => 'Administración',
             'icon'    => 'fas fa-fw fa-tools',

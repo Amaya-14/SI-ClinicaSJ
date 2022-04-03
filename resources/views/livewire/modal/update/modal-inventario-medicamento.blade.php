@@ -9,7 +9,7 @@
                     <div class="modal-header bg-purple">
                         <h4 class="modal-title" id="staticBackdropLabel">
                             <i class="fas fa-eye mr-2"></i>
-                            Inventario de médicamentos
+                            Inventario de medicamentos
                         </h4>
                         <button type="button" class="btn-close" id="cerrar-modal" title="Cerrar"
                             aria-label="Cerrar"></button>
