@@ -351,7 +351,7 @@ return [
                 [
                     'text' => 'Usuarios',
                     'icon' => 'fas fa-fw fa-user-plus',
-                    'url'  => 'usuarios',
+                    'url'  => '/seguridad/usuarios',
                 ],
                 [
                     'text' => 'Roles, Permisos y Objetos',
@@ -364,9 +364,9 @@ return [
                     'url'  => 'mantenimiento'
                 ],
                 [
-                    'text' => 'Bitacora',
+                    'text' => 'Bitácora',
                     'icon' => 'fas fa-fw fa-book',
-                    'url'  => 'bitacora',
+                    'url'  => '/seguridad/bitacora',
                 ],
             ],
         ],

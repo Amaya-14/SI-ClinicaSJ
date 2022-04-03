@@ -148,10 +148,27 @@ Route::controller(RolPermisoController::class)->group(function () {
 });
 
 //
-Route::controller(BitacoraController::class)->group(function (){
+Route::controller(BitacoraController::class)->group(function () {
     Route::get('/seguridad/bitacora', 'index')->name('bitacora.index');
 
     Route::get('/seguridad/load/bitacora', 'loadBitacora')->name('load.bitacora');
+});
+
+//
+Route::controller(UsuariosController::class)->group(function () {
+    Route::get('/seguridad/usuarios', 'index')->name('usuario.index');
+
+    Route::get('/seguridad/load/usuarios', 'loadUsuarios')->name('load.usuarios');
+
+    Route::post('/seguridad/usuarios', 'store')->name('user.store');
+
+    Route::get('/seguridad/usuarios/{id}/edit', 'edit')->name('user.edit');
+
+    Route::get('/seguridad/usuario/correo/{id}', 'show')->name('user.show');
+
+    Route::put('/seguridad/usuario/{rol}/{rel}', 'update')->name('user.update');
+
+    Route::delete('/seguridad/usuario/{id}', 'destroy')->name('user.destroy');
 });
 
 //Route::resource('mantenimiento/personas', MantenimientoPersonaController::class);
@@ -160,4 +177,4 @@ Route::controller(BitacoraController::class)->group(function (){
 //Route::resource('mantenimiento/caja', MantenimientoCajaController::class);
 //Route::resource('usuarios', UsuariosController::class);
 //Route::resource('seguridad/roles-permisos', RolPermisoController::class);
-Route::resource('bitacora', BitacoraController::class);
+//Route::resource('bitacora', BitacoraController::class);

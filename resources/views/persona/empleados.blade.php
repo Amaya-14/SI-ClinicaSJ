@@ -160,7 +160,6 @@
         /* */
         $('#' + idFormCrearEmpleado).submit(function(event) {
             event.preventDefault();
-            console.log($('#c_foto').val())
             $.ajax({
                 type: 'POST',
                 url: '/empleados',
